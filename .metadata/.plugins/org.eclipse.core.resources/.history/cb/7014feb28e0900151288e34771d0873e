@@ -1,0 +1,21 @@
+/*
+ * Personagem.h
+ *
+ *  Created on: 02/06/2015
+ *      Author: pchan
+ */
+
+#ifndef SRC_CDP_PERSONAGEM_H_
+#define SRC_CDP_PERSONAGEM_H_
+
+namespace cdp {
+
+class Personagem {
+
+	public:
+		virtual Personagem();
+	};
+
+} /* namespace cdp */
+
+#endif /* SRC_CDP_PERSONAGEM_H_ */

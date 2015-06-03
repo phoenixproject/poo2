@@ -1,0 +1,82 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/cute/cute_test.h
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*********************************************************************************
+        -:    2: * This file is part of CUTE.
+        -:    3: *
+        -:    4: * CUTE is free software: you can redistribute it and/or modify
+        -:    5: * it under the terms of the GNU Lesser General Public License as published by
+        -:    6: * the Free Software Foundation, either version 3 of the License, or
+        -:    7: * (at your option) any later version.
+        -:    8: *
+        -:    9: * CUTE is distributed in the hope that it will be useful,
+        -:   10: * but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   11: * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   12: * GNU Lesser General Public License for more details.
+        -:   13: *
+        -:   14: * You should have received a copy of the GNU Lesser General Public License
+        -:   15: * along with CUTE.  If not, see <http://www.gnu.org/licenses/>.
+        -:   16: *
+        -:   17: * Copyright 2007-2009 Peter Sommerlad, Emanuel Graf
+        -:   18: *
+        -:   19: *********************************************************************************/
+        -:   20:#ifndef CUTE_TEST_H_
+        -:   21:#define CUTE_TEST_H_
+        -:   22:#include "cute_determine_version.h"
+        -:   23:#include "cute_determine_library.h"
+        -:   24:#include "cute_demangle.h"
+        -:   25:// make plain functions as tests more 'cute':
+        -:   26:namespace cute {
+        -:   27:
+function _ZN4cute4testaSERKS0_ called 0 returned 0% blocks executed 0%
+function _ZN4cute4testD1Ev called 2 returned 100% blocks executed 80%
+function _ZN4cute4testC1ERKS0_ called 1 returned 100% blocks executed 80%
+        3:   28:	struct test{
+call    0 never executed
+call    1 never executed
+call    2 returned 100%
+branch  3 taken 100% (fallthrough)
+branch  4 taken 0% (throw)
+call    5 returned 100%
+call    6 never executed
+call    7 returned 100%
+call    8 returned 100%
+branch  9 taken 100% (fallthrough)
+branch 10 taken 0% (throw)
+call   11 never executed
+function _ZNK4cute4testclEv called 1 returned 100% blocks executed 100%
+        1:   29:		void operator()()const{ theTest(); }
+call    0 returned 100%
+function _ZNK4cute4test4nameEv called 5 returned 100% blocks executed 100%
+        5:   30:		std::string name()const{ return name_;}
+call    0 returned 100%
+        -:   31:
+        -:   32:
+        -:   33:		// (real) functor types can (almost) spell their name
+        -:   34:		// but a name can also be given explicitely, e.g. for CUTE() macro
+        -:   35:		// for simple test functions
+        -:   36:		template <typename VoidFunctor>
+function _ZN4cute4testC1IPFvvEEERKT_Ss called 1 returned 100% blocks executed 80%
+        1:   37:		test(VoidFunctor const &t, std::string sname = demangle(typeid(VoidFunctor).name()))
+        1:   38:		:name_(sname),theTest(t){}
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 never executed
+        -:   39:		// separate overload to allow nicer C++11 initializers with {"name",lambda}
+        -:   40:		template <typename VoidFunctor>
+        -:   41:		test(std::string sname,VoidFunctor const &t)
+        -:   42:		:name_(sname),theTest(t){}
+        -:   43:
+        -:   44:	private:
+        -:   45:		std::string name_;
+        -:   46:		boost_or_tr1::function<void()> theTest;
+        -:   47:	};
+        -:   48:
+        -:   49:}
+        -:   50:#define CUTE(name) cute::test((&name),(#name))
+        -:   51:
+        -:   52:#endif /*CUTE_TEST_H_*/

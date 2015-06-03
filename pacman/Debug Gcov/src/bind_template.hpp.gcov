@@ -1,0 +1,361 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/boost/boost/bind/bind_template.hpp
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2://  bind/bind_template.hpp
+        -:    3://
+        -:    4://  Do not include this header directly.
+        -:    5://
+        -:    6://  Copyright (c) 2001-2004 Peter Dimov and Multi Media Ltd.
+        -:    7://
+        -:    8:// Distributed under the Boost Software License, Version 1.0. (See
+        -:    9:// accompanying file LICENSE_1_0.txt or copy at
+        -:   10:// http://www.boost.org/LICENSE_1_0.txt)
+        -:   11://
+        -:   12://  See http://www.boost.org/libs/bind/bind.html for documentation.
+        -:   13://
+        -:   14:
+        -:   15:    typedef typename result_traits<R, F>::type result_type;
+        -:   16:
+        -:   17:    result_type operator()()
+        -:   18:    {
+        -:   19:        list0 a;
+        -:   20:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   21:    }
+        -:   22:
+        -:   23:    result_type operator()() const
+        -:   24:    {
+        -:   25:        list0 a;
+        -:   26:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   27:    }
+        -:   28:
+        -:   29:    template<class A1> result_type operator()(A1 & a1)
+        -:   30:    {
+        -:   31:        list1<A1 &> a(a1);
+        -:   32:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   33:    }
+        -:   34:
+        -:   35:    template<class A1> result_type operator()(A1 & a1) const
+        -:   36:    {
+        -:   37:        list1<A1 &> a(a1);
+        -:   38:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   39:    }
+        -:   40:
+        -:   41:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:   42: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:   43:
+function _ZN5boost3_bi6bind_tIbNS_4_mfi4cmf1IbN4cute10runner_aux14ArgvTestFilterERKSsEENS0_5list2INS0_5valueIS6_EENS1_ISsNS2_4cmf0ISsNS4_4testEEENS0_5list1INS_3argILi1EEEEEEEEEEclISE_EEbRKT_ called 1 returned 100% blocks executed 83%
+        1:   44:    template<class A1> result_type operator()(A1 const & a1)
+        -:   45:    {
+        1:   46:        list1<A1 const &> a(a1);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   47:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   48:    }
+        -:   49:
+        -:   50:    template<class A1> result_type operator()(A1 const & a1) const
+        -:   51:    {
+        -:   52:        list1<A1 const &> a(a1);
+        -:   53:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   54:    }
+        -:   55:
+        -:   56:#endif
+        -:   57:
+        -:   58:    template<class A1, class A2> result_type operator()(A1 & a1, A2 & a2)
+        -:   59:    {
+        -:   60:        list2<A1 &, A2 &> a(a1, a2);
+        -:   61:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   62:    }
+        -:   63:
+        -:   64:    template<class A1, class A2> result_type operator()(A1 & a1, A2 & a2) const
+        -:   65:    {
+        -:   66:        list2<A1 &, A2 &> a(a1, a2);
+        -:   67:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   68:    }
+        -:   69:
+        -:   70:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:   71: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:   72:
+        -:   73:    template<class A1, class A2> result_type operator()(A1 const & a1, A2 & a2)
+        -:   74:    {
+        -:   75:        list2<A1 const &, A2 &> a(a1, a2);
+        -:   76:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   77:    }
+        -:   78:
+        -:   79:    template<class A1, class A2> result_type operator()(A1 const & a1, A2 & a2) const
+        -:   80:    {
+        -:   81:        list2<A1 const &, A2 &> a(a1, a2);
+        -:   82:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   83:    }
+        -:   84:
+        -:   85:
+        -:   86:    template<class A1, class A2> result_type operator()(A1 & a1, A2 const & a2)
+        -:   87:    {
+        -:   88:        list2<A1 &, A2 const &> a(a1, a2);
+        -:   89:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   90:    }
+        -:   91:
+        -:   92:    template<class A1, class A2> result_type operator()(A1 & a1, A2 const & a2) const
+        -:   93:    {
+        -:   94:        list2<A1 &, A2 const &> a(a1, a2);
+        -:   95:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:   96:    }
+        -:   97:
+        -:   98:
+        -:   99:    template<class A1, class A2> result_type operator()(A1 const & a1, A2 const & a2)
+        -:  100:    {
+        -:  101:        list2<A1 const &, A2 const &> a(a1, a2);
+        -:  102:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  103:    }
+        -:  104:
+        -:  105:    template<class A1, class A2> result_type operator()(A1 const & a1, A2 const & a2) const
+        -:  106:    {
+        -:  107:        list2<A1 const &, A2 const &> a(a1, a2);
+        -:  108:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  109:    }
+        -:  110:
+        -:  111:#endif
+        -:  112:
+        -:  113:    template<class A1, class A2, class A3> result_type operator()(A1 & a1, A2 & a2, A3 & a3)
+        -:  114:    {
+        -:  115:        list3<A1 &, A2 &, A3 &> a(a1, a2, a3);
+        -:  116:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  117:    }
+        -:  118:
+        -:  119:    template<class A1, class A2, class A3> result_type operator()(A1 & a1, A2 & a2, A3 & a3) const
+        -:  120:    {
+        -:  121:        list3<A1 &, A2 &, A3 &> a(a1, a2, a3);
+        -:  122:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  123:    }
+        -:  124:
+        -:  125:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:  126: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:  127:
+        -:  128:    template<class A1, class A2, class A3> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3)
+        -:  129:    {
+        -:  130:        list3<A1 const &, A2 const &, A3 const &> a(a1, a2, a3);
+        -:  131:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  132:    }
+        -:  133:
+        -:  134:    template<class A1, class A2, class A3> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3) const
+        -:  135:    {
+        -:  136:        list3<A1 const &, A2 const &, A3 const &> a(a1, a2, a3);
+        -:  137:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  138:    }
+        -:  139:
+        -:  140:#endif
+        -:  141:
+        -:  142:    template<class A1, class A2, class A3, class A4> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4)
+        -:  143:    {
+        -:  144:        list4<A1 &, A2 &, A3 &, A4 &> a(a1, a2, a3, a4);
+        -:  145:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  146:    }
+        -:  147:
+        -:  148:    template<class A1, class A2, class A3, class A4> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4) const
+        -:  149:    {
+        -:  150:        list4<A1 &, A2 &, A3 &, A4 &> a(a1, a2, a3, a4);
+        -:  151:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  152:    }
+        -:  153:
+        -:  154:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:  155: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:  156:
+        -:  157:    template<class A1, class A2, class A3, class A4> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4)
+        -:  158:    {
+        -:  159:        list4<A1 const &, A2 const &, A3 const &, A4 const &> a(a1, a2, a3, a4);
+        -:  160:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  161:    }
+        -:  162:
+        -:  163:    template<class A1, class A2, class A3, class A4> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4) const
+        -:  164:    {
+        -:  165:        list4<A1 const &, A2 const &, A3 const &, A4 const &> a(a1, a2, a3, a4);
+        -:  166:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  167:    }
+        -:  168:
+        -:  169:#endif
+        -:  170:
+        -:  171:    template<class A1, class A2, class A3, class A4, class A5> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5)
+        -:  172:    {
+        -:  173:        list5<A1 &, A2 &, A3 &, A4 &, A5 &> a(a1, a2, a3, a4, a5);
+        -:  174:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  175:    }
+        -:  176:
+        -:  177:    template<class A1, class A2, class A3, class A4, class A5> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5) const
+        -:  178:    {
+        -:  179:        list5<A1 &, A2 &, A3 &, A4 &, A5 &> a(a1, a2, a3, a4, a5);
+        -:  180:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  181:    }
+        -:  182:
+        -:  183:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:  184: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:  185:
+        -:  186:    template<class A1, class A2, class A3, class A4, class A5> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5)
+        -:  187:    {
+        -:  188:        list5<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &> a(a1, a2, a3, a4, a5);
+        -:  189:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  190:    }
+        -:  191:
+        -:  192:    template<class A1, class A2, class A3, class A4, class A5> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5) const
+        -:  193:    {
+        -:  194:        list5<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &> a(a1, a2, a3, a4, a5);
+        -:  195:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  196:    }
+        -:  197:
+        -:  198:#endif
+        -:  199:
+        -:  200:    template<class A1, class A2, class A3, class A4, class A5, class A6> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5, A6 & a6)
+        -:  201:    {
+        -:  202:        list6<A1 &, A2 &, A3 &, A4 &, A5 &, A6 &> a(a1, a2, a3, a4, a5, a6);
+        -:  203:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  204:    }
+        -:  205:
+        -:  206:    template<class A1, class A2, class A3, class A4, class A5, class A6> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5, A6 & a6) const
+        -:  207:    {
+        -:  208:        list6<A1 &, A2 &, A3 &, A4 &, A5 &, A6 &> a(a1, a2, a3, a4, a5, a6);
+        -:  209:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  210:    }
+        -:  211:
+        -:  212:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:  213: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:  214:
+        -:  215:    template<class A1, class A2, class A3, class A4, class A5, class A6> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5, A6 const & a6)
+        -:  216:    {
+        -:  217:        list6<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &, A6 const &> a(a1, a2, a3, a4, a5, a6);
+        -:  218:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  219:    }
+        -:  220:
+        -:  221:    template<class A1, class A2, class A3, class A4, class A5, class A6> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5, A6 const & a6) const
+        -:  222:    {
+        -:  223:        list6<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &, A6 const &> a(a1, a2, a3, a4, a5, a6);
+        -:  224:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  225:    }
+        -:  226:
+        -:  227:#endif
+        -:  228:
+        -:  229:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5, A6 & a6, A7 & a7)
+        -:  230:    {
+        -:  231:        list7<A1 &, A2 &, A3 &, A4 &, A5 &, A6 &, A7 &> a(a1, a2, a3, a4, a5, a6, a7);
+        -:  232:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  233:    }
+        -:  234:
+        -:  235:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5, A6 & a6, A7 & a7) const
+        -:  236:    {
+        -:  237:        list7<A1 &, A2 &, A3 &, A4 &, A5 &, A6 &, A7 &> a(a1, a2, a3, a4, a5, a6, a7);
+        -:  238:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  239:    }
+        -:  240:
+        -:  241:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:  242: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:  243:
+        -:  244:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5, A6 const & a6, A7 const & a7)
+        -:  245:    {
+        -:  246:        list7<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &, A6 const &, A7 const &> a(a1, a2, a3, a4, a5, a6, a7);
+        -:  247:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  248:    }
+        -:  249:
+        -:  250:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5, A6 const & a6, A7 const & a7) const
+        -:  251:    {
+        -:  252:        list7<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &, A6 const &, A7 const &> a(a1, a2, a3, a4, a5, a6, a7);
+        -:  253:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  254:    }
+        -:  255:
+        -:  256:#endif
+        -:  257:
+        -:  258:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5, A6 & a6, A7 & a7, A8 & a8)
+        -:  259:    {
+        -:  260:        list8<A1 &, A2 &, A3 &, A4 &, A5 &, A6 &, A7 &, A8 &> a(a1, a2, a3, a4, a5, a6, a7, a8);
+        -:  261:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  262:    }
+        -:  263:
+        -:  264:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5, A6 & a6, A7 & a7, A8 & a8) const
+        -:  265:    {
+        -:  266:        list8<A1 &, A2 &, A3 &, A4 &, A5 &, A6 &, A7 &, A8 &> a(a1, a2, a3, a4, a5, a6, a7, a8);
+        -:  267:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  268:    }
+        -:  269:
+        -:  270:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:  271: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:  272:
+        -:  273:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5, A6 const & a6, A7 const & a7, A8 const & a8)
+        -:  274:    {
+        -:  275:        list8<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &, A6 const &, A7 const &, A8 const &> a(a1, a2, a3, a4, a5, a6, a7, a8);
+        -:  276:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  277:    }
+        -:  278:
+        -:  279:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5, A6 const & a6, A7 const & a7, A8 const & a8) const
+        -:  280:    {
+        -:  281:        list8<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &, A6 const &, A7 const &, A8 const &> a(a1, a2, a3, a4, a5, a6, a7, a8);
+        -:  282:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  283:    }
+        -:  284:
+        -:  285:#endif
+        -:  286:
+        -:  287:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8, class A9> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5, A6 & a6, A7 & a7, A8 & a8, A9 & a9)
+        -:  288:    {
+        -:  289:        list9<A1 &, A2 &, A3 &, A4 &, A5 &, A6 &, A7 &, A8 &, A9 &> a(a1, a2, a3, a4, a5, a6, a7, a8, a9);
+        -:  290:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  291:    }
+        -:  292:
+        -:  293:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8, class A9> result_type operator()(A1 & a1, A2 & a2, A3 & a3, A4 & a4, A5 & a5, A6 & a6, A7 & a7, A8 & a8, A9 & a9) const
+        -:  294:    {
+        -:  295:        list9<A1 &, A2 &, A3 &, A4 &, A5 &, A6 &, A7 &, A8 &, A9 &> a(a1, a2, a3, a4, a5, a6, a7, a8, a9);
+        -:  296:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  297:    }
+        -:  298:
+        -:  299:#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING) \
+        -:  300: && !BOOST_WORKAROUND(__EDG_VERSION__, <= 238)
+        -:  301:
+        -:  302:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8, class A9> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5, A6 const & a6, A7 const & a7, A8 const & a8, A9 const & a9)
+        -:  303:    {
+        -:  304:        list9<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &, A6 const &, A7 const &, A8 const &, A9 const &> a(a1, a2, a3, a4, a5, a6, a7, a8, a9);
+        -:  305:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  306:    }
+        -:  307:
+        -:  308:    template<class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8, class A9> result_type operator()(A1 const & a1, A2 const & a2, A3 const & a3, A4 const & a4, A5 const & a5, A6 const & a6, A7 const & a7, A8 const & a8, A9 const & a9) const
+        -:  309:    {
+        -:  310:        list9<A1 const &, A2 const &, A3 const &, A4 const &, A5 const &, A6 const &, A7 const &, A8 const &, A9 const &> a(a1, a2, a3, a4, a5, a6, a7, a8, a9);
+        -:  311:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  312:    }
+        -:  313:
+        -:  314:#endif
+        -:  315:
+function _ZN5boost3_bi6bind_tISsNS_4_mfi4cmf0ISsN4cute4testEEENS0_5list1INS_3argILi1EEEEEE4evalIKNS7_IRKS5_EEEESsRT_ called 1 returned 100% blocks executed 100%
+        1:  316:    template<class A> result_type eval(A & a)
+        -:  317:    {
+        1:  318:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:  319:    }
+        -:  320:
+        -:  321:    template<class A> result_type eval(A & a) const
+        -:  322:    {
+        -:  323:        BOOST_BIND_RETURN l_(type<result_type>(), f_, a, 0);
+        -:  324:    }
+        -:  325:
+        -:  326:    template<class V> void accept(V & v) const
+        -:  327:    {
+        -:  328:#if !defined( BOOST_NO_ARGUMENT_DEPENDENT_LOOKUP ) && !defined( __BORLANDC__ )
+        -:  329:
+        -:  330:        using boost::visit_each;
+        -:  331:
+        -:  332:#endif
+        -:  333:        BOOST_BIND_VISIT_EACH(v, f_, 0);
+        -:  334:        l_.accept(v);
+        -:  335:    }
+        -:  336:
+        -:  337:    bool compare(this_type const & rhs) const
+        -:  338:    {
+        -:  339:        return ref_compare(f_, rhs.f_, 0) && l_ == rhs.l_;
+        -:  340:    }
+        -:  341:
+        -:  342:private:
+        -:  343:
+        -:  344:    F f_;
+        -:  345:    L l_;

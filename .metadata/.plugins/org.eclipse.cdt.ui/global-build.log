@@ -1,0 +1,46 @@
+21:39:23 **** Rebuild of configuration Debug Gcov for project pacman ****
+Info: Internal Builder is used for build
+g++ "-ID:\\_BASE\\_SISTEMAS\\poo2\\pacman\\cute" "-ID:\\_BASE\\_SISTEMAS\\poo2\\pacman\\boost" -O0 -g3 -Wall -c -fmessage-length=0 -fprofile-arcs -ftest-coverage -o "src\\Test.o" "..\\src\\Test.cpp" 
+In file included from D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/bind.hpp:29:0,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind.hpp:22,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_determine_library.h:37,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_test.h:23,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_suite.h:22,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute.h:29,
+                 from ..\src\Test.cpp:1:
+D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/arg.hpp: In constructor 'boost::arg<I>::arg(const T&)':
+D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/arg.hpp:37:22: warning: typedef 'T_must_be_placeholder' locally defined but not used [-Wunused-local-typedefs]
+         typedef char T_must_be_placeholder[ I == is_placeholder<T>::value? 1: -1 ];
+                      ^
+g++ -fprofile-arcs -ftest-coverage -std=c99 -o pacman.exe "src\\Test.o" 
+Info: Nothing to build for pacman
+21:41:03 **** Incremental Build of configuration Debug Gcov for project pacman ****
+Info: Internal Builder is used for build
+g++ "-ID:\\_BASE\\_SISTEMAS\\poo2\\pacman\\cute" "-ID:\\_BASE\\_SISTEMAS\\poo2\\pacman\\boost" -O0 -g3 -Wall -c -fmessage-length=0 -fprofile-arcs -ftest-coverage -o "src\\Test.o" "..\\src\\Test.cpp" 
+In file included from D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/bind.hpp:29:0,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind.hpp:22,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_determine_library.h:37,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_test.h:23,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_suite.h:22,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute.h:29,
+                 from ..\src\Test.cpp:1:
+D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/arg.hpp: In constructor 'boost::arg<I>::arg(const T&)':
+D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/arg.hpp:37:22: warning: typedef 'T_must_be_placeholder' locally defined but not used [-Wunused-local-typedefs]
+         typedef char T_must_be_placeholder[ I == is_placeholder<T>::value? 1: -1 ];
+                      ^
+g++ -fprofile-arcs -ftest-coverage -std=c99 -o pacman.exe "src\\Test.o" 
+21:42:12 **** Incremental Build of configuration Debug Gcov for project pacman ****
+Info: Internal Builder is used for build
+g++ "-ID:\\_BASE\\_SISTEMAS\\poo2\\pacman\\cute" "-ID:\\_BASE\\_SISTEMAS\\poo2\\pacman\\boost" -O0 -g3 -Wall -c -fmessage-length=0 -fprofile-arcs -ftest-coverage -o "src\\Test.o" "..\\src\\Test.cpp" 
+In file included from D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/bind.hpp:29:0,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind.hpp:22,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_determine_library.h:37,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_test.h:23,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute_suite.h:22,
+                 from D:\_BASE\_SISTEMAS\poo2\pacman\cute/cute.h:29,
+                 from ..\src\Test.cpp:1:
+D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/arg.hpp: In constructor 'boost::arg<I>::arg(const T&)':
+D:\_BASE\_SISTEMAS\poo2\pacman\boost/boost/bind/arg.hpp:37:22: warning: typedef 'T_must_be_placeholder' locally defined but not used [-Wunused-local-typedefs]
+         typedef char T_must_be_placeholder[ I == is_placeholder<T>::value? 1: -1 ];
+                      ^
+g++ -fprofile-arcs -ftest-coverage -std=c99 -o pacman.exe "src\\Test.o" 

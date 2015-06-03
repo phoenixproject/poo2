@@ -1,0 +1,251 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/boost/boost/bind/bind_mf_cc.hpp
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2://  bind/bind_mf_cc.hpp - support for different calling conventions
+        -:    3://
+        -:    4://  Do not include this header directly.
+        -:    5://
+        -:    6://  Copyright (c) 2001 Peter Dimov and Multi Media Ltd.
+        -:    7://
+        -:    8:// Distributed under the Boost Software License, Version 1.0. (See
+        -:    9:// accompanying file LICENSE_1_0.txt or copy at
+        -:   10:// http://www.boost.org/LICENSE_1_0.txt)
+        -:   11://
+        -:   12://  See http://www.boost.org/libs/bind/bind.html for documentation.
+        -:   13://
+        -:   14:
+        -:   15:// 0
+        -:   16:
+        -:   17:template<class R, class T,
+        -:   18:    class A1>
+        -:   19:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf0)<R, T>, typename _bi::list_av_1<A1>::type>
+        -:   20:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (), A1 a1)
+        -:   21:{
+        -:   22:    typedef _mfi::BOOST_BIND_MF_NAME(mf0)<R, T> F;
+        -:   23:    typedef typename _bi::list_av_1<A1>::type list_type;
+        -:   24:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1));
+        -:   25:}
+        -:   26:
+        -:   27:template<class R, class T,
+        -:   28:    class A1>
+        -:   29:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf0)<R, T>, typename _bi::list_av_1<A1>::type>
+function _ZN5boost4bindISsN4cute4testENS_3argILi1EEEEENS_3_bi6bind_tIT_NS_4_mfi4cmf0IS7_T0_EENS5_9list_av_1IT1_E4typeEEEMSA_KFS7_vESD_ called 1 returned 100% blocks executed 100%
+        1:   30:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) () const, A1 a1)
+        -:   31:{
+        -:   32:    typedef _mfi::BOOST_BIND_MF_NAME(cmf0)<R, T> F;
+        -:   33:    typedef typename _bi::list_av_1<A1>::type list_type;
+        1:   34:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1));
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+        -:   35:}
+        -:   36:
+        -:   37:// 1
+        -:   38:
+        -:   39:template<class R, class T,
+        -:   40:    class B1,
+        -:   41:    class A1, class A2>
+        -:   42:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf1)<R, T, B1>, typename _bi::list_av_2<A1, A2>::type>
+        -:   43:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1), A1 a1, A2 a2)
+        -:   44:{
+        -:   45:    typedef _mfi::BOOST_BIND_MF_NAME(mf1)<R, T, B1> F;
+        -:   46:    typedef typename _bi::list_av_2<A1, A2>::type list_type;
+        -:   47:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2));
+        -:   48:}
+        -:   49:
+        -:   50:template<class R, class T,
+        -:   51:    class B1,
+        -:   52:    class A1, class A2>
+        -:   53:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf1)<R, T, B1>, typename _bi::list_av_2<A1, A2>::type>
+function _ZN5boost4bindIbN4cute10runner_aux14ArgvTestFilterERKSsS3_NS_3_bi6bind_tISsNS_4_mfi4cmf0ISsNS1_4testEEENS6_5list1INS_3argILi1EEEEEEEEENS7_IT_NS8_4cmf1ISH_T0_T1_EENS6_9list_av_2IT2_T3_E4typeEEEMSJ_KFSH_SK_ESN_SO_ called 1 returned 100% blocks executed 69%
+        1:   54:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1) const, A1 a1, A2 a2)
+        -:   55:{
+        -:   56:    typedef _mfi::BOOST_BIND_MF_NAME(cmf1)<R, T, B1> F;
+        -:   57:    typedef typename _bi::list_av_2<A1, A2>::type list_type;
+        1:   58:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2));
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+call    5 returned 100%
+branch  6 taken 100% (fallthrough)
+branch  7 taken 0% (throw)
+call    8 returned 100%
+branch  9 taken 100% (fallthrough)
+branch 10 taken 0% (throw)
+call   11 returned 100%
+call   12 never executed
+call   13 never executed
+        -:   59:}
+        -:   60:
+        -:   61:// 2
+        -:   62:
+        -:   63:template<class R, class T,
+        -:   64:    class B1, class B2,
+        -:   65:    class A1, class A2, class A3>
+        -:   66:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf2)<R, T, B1, B2>, typename _bi::list_av_3<A1, A2, A3>::type>
+        -:   67:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2), A1 a1, A2 a2, A3 a3)
+        -:   68:{
+        -:   69:    typedef _mfi::BOOST_BIND_MF_NAME(mf2)<R, T, B1, B2> F;
+        -:   70:    typedef typename _bi::list_av_3<A1, A2, A3>::type list_type;
+        -:   71:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3));
+        -:   72:}
+        -:   73:
+        -:   74:template<class R, class T,
+        -:   75:    class B1, class B2,
+        -:   76:    class A1, class A2, class A3>
+        -:   77:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf2)<R, T, B1, B2>, typename _bi::list_av_3<A1, A2, A3>::type>
+        -:   78:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2) const, A1 a1, A2 a2, A3 a3)
+        -:   79:{
+        -:   80:    typedef _mfi::BOOST_BIND_MF_NAME(cmf2)<R, T, B1, B2> F;
+        -:   81:    typedef typename _bi::list_av_3<A1, A2, A3>::type list_type;
+        -:   82:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3));
+        -:   83:}
+        -:   84:
+        -:   85:// 3
+        -:   86:
+        -:   87:template<class R, class T,
+        -:   88:    class B1, class B2, class B3,
+        -:   89:    class A1, class A2, class A3, class A4>
+        -:   90:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf3)<R, T, B1, B2, B3>, typename _bi::list_av_4<A1, A2, A3, A4>::type>
+        -:   91:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3), A1 a1, A2 a2, A3 a3, A4 a4)
+        -:   92:{
+        -:   93:    typedef _mfi::BOOST_BIND_MF_NAME(mf3)<R, T, B1, B2, B3> F;
+        -:   94:    typedef typename _bi::list_av_4<A1, A2, A3, A4>::type list_type;
+        -:   95:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4));
+        -:   96:}
+        -:   97:
+        -:   98:template<class R, class T,
+        -:   99:    class B1, class B2, class B3,
+        -:  100:    class A1, class A2, class A3, class A4>
+        -:  101:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf3)<R, T, B1, B2, B3>, typename _bi::list_av_4<A1, A2, A3, A4>::type>
+        -:  102:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3) const, A1 a1, A2 a2, A3 a3, A4 a4)
+        -:  103:{
+        -:  104:    typedef _mfi::BOOST_BIND_MF_NAME(cmf3)<R, T, B1, B2, B3> F;
+        -:  105:    typedef typename _bi::list_av_4<A1, A2, A3, A4>::type list_type;
+        -:  106:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4));
+        -:  107:}
+        -:  108:
+        -:  109:// 4
+        -:  110:
+        -:  111:template<class R, class T,
+        -:  112:    class B1, class B2, class B3, class B4,
+        -:  113:    class A1, class A2, class A3, class A4, class A5>
+        -:  114:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf4)<R, T, B1, B2, B3, B4>, typename _bi::list_av_5<A1, A2, A3, A4, A5>::type>
+        -:  115:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4), A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
+        -:  116:{
+        -:  117:    typedef _mfi::BOOST_BIND_MF_NAME(mf4)<R, T, B1, B2, B3, B4> F;
+        -:  118:    typedef typename _bi::list_av_5<A1, A2, A3, A4, A5>::type list_type;
+        -:  119:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5));
+        -:  120:}
+        -:  121:
+        -:  122:template<class R, class T,
+        -:  123:    class B1, class B2, class B3, class B4,
+        -:  124:    class A1, class A2, class A3, class A4, class A5>
+        -:  125:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf4)<R, T, B1, B2, B3, B4>, typename _bi::list_av_5<A1, A2, A3, A4, A5>::type>
+        -:  126:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4) const, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
+        -:  127:{
+        -:  128:    typedef _mfi::BOOST_BIND_MF_NAME(cmf4)<R, T, B1, B2, B3, B4> F;
+        -:  129:    typedef typename _bi::list_av_5<A1, A2, A3, A4, A5>::type list_type;
+        -:  130:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5));
+        -:  131:}
+        -:  132:
+        -:  133:// 5
+        -:  134:
+        -:  135:template<class R, class T,
+        -:  136:    class B1, class B2, class B3, class B4, class B5,
+        -:  137:    class A1, class A2, class A3, class A4, class A5, class A6>
+        -:  138:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf5)<R, T, B1, B2, B3, B4, B5>, typename _bi::list_av_6<A1, A2, A3, A4, A5, A6>::type>
+        -:  139:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4, B5), A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
+        -:  140:{
+        -:  141:    typedef _mfi::BOOST_BIND_MF_NAME(mf5)<R, T, B1, B2, B3, B4, B5> F;
+        -:  142:    typedef typename _bi::list_av_6<A1, A2, A3, A4, A5, A6>::type list_type;
+        -:  143:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5, a6));
+        -:  144:}
+        -:  145:
+        -:  146:template<class R, class T,
+        -:  147:    class B1, class B2, class B3, class B4, class B5,
+        -:  148:    class A1, class A2, class A3, class A4, class A5, class A6>
+        -:  149:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf5)<R, T, B1, B2, B3, B4, B5>, typename _bi::list_av_6<A1, A2, A3, A4, A5, A6>::type>
+        -:  150:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4, B5) const, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
+        -:  151:{
+        -:  152:    typedef _mfi::BOOST_BIND_MF_NAME(cmf5)<R, T, B1, B2, B3, B4, B5> F;
+        -:  153:    typedef typename _bi::list_av_6<A1, A2, A3, A4, A5, A6>::type list_type;
+        -:  154:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5, a6));
+        -:  155:}
+        -:  156:
+        -:  157:// 6
+        -:  158:
+        -:  159:template<class R, class T,
+        -:  160:    class B1, class B2, class B3, class B4, class B5, class B6,
+        -:  161:    class A1, class A2, class A3, class A4, class A5, class A6, class A7>
+        -:  162:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf6)<R, T, B1, B2, B3, B4, B5, B6>, typename _bi::list_av_7<A1, A2, A3, A4, A5, A6, A7>::type>
+        -:  163:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4, B5, B6), A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
+        -:  164:{
+        -:  165:    typedef _mfi::BOOST_BIND_MF_NAME(mf6)<R, T, B1, B2, B3, B4, B5, B6> F;
+        -:  166:    typedef typename _bi::list_av_7<A1, A2, A3, A4, A5, A6, A7>::type list_type;
+        -:  167:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5, a6, a7));
+        -:  168:}
+        -:  169:
+        -:  170:template<class R, class T,
+        -:  171:    class B1, class B2, class B3, class B4, class B5, class B6,
+        -:  172:    class A1, class A2, class A3, class A4, class A5, class A6, class A7>
+        -:  173:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf6)<R, T, B1, B2, B3, B4, B5, B6>, typename _bi::list_av_7<A1, A2, A3, A4, A5, A6, A7>::type>
+        -:  174:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4, B5, B6) const, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
+        -:  175:{
+        -:  176:    typedef _mfi::BOOST_BIND_MF_NAME(cmf6)<R, T, B1, B2, B3, B4, B5, B6> F;
+        -:  177:    typedef typename _bi::list_av_7<A1, A2, A3, A4, A5, A6, A7>::type list_type;
+        -:  178:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5, a6, a7));
+        -:  179:}
+        -:  180:
+        -:  181:// 7
+        -:  182:
+        -:  183:template<class R, class T,
+        -:  184:    class B1, class B2, class B3, class B4, class B5, class B6, class B7,
+        -:  185:    class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8>
+        -:  186:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf7)<R, T, B1, B2, B3, B4, B5, B6, B7>, typename _bi::list_av_8<A1, A2, A3, A4, A5, A6, A7, A8>::type>
+        -:  187:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4, B5, B6, B7), A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
+        -:  188:{
+        -:  189:    typedef _mfi::BOOST_BIND_MF_NAME(mf7)<R, T, B1, B2, B3, B4, B5, B6, B7> F;
+        -:  190:    typedef typename _bi::list_av_8<A1, A2, A3, A4, A5, A6, A7, A8>::type list_type;
+        -:  191:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5, a6, a7, a8));
+        -:  192:}
+        -:  193:
+        -:  194:template<class R, class T,
+        -:  195:    class B1, class B2, class B3, class B4, class B5, class B6, class B7,
+        -:  196:    class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8>
+        -:  197:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf7)<R, T, B1, B2, B3, B4, B5, B6, B7>, typename _bi::list_av_8<A1, A2, A3, A4, A5, A6, A7, A8>::type>
+        -:  198:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4, B5, B6, B7) const, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
+        -:  199:{
+        -:  200:    typedef _mfi::BOOST_BIND_MF_NAME(cmf7)<R, T, B1, B2, B3, B4, B5, B6, B7> F;
+        -:  201:    typedef typename _bi::list_av_8<A1, A2, A3, A4, A5, A6, A7, A8>::type list_type;
+        -:  202:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5, a6, a7, a8));
+        -:  203:}
+        -:  204:
+        -:  205:// 8
+        -:  206:
+        -:  207:template<class R, class T,
+        -:  208:    class B1, class B2, class B3, class B4, class B5, class B6, class B7, class B8,
+        -:  209:    class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8, class A9>
+        -:  210:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(mf8)<R, T, B1, B2, B3, B4, B5, B6, B7, B8>, typename _bi::list_av_9<A1, A2, A3, A4, A5, A6, A7, A8, A9>::type>
+        -:  211:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4, B5, B6, B7, B8), A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
+        -:  212:{
+        -:  213:    typedef _mfi::BOOST_BIND_MF_NAME(mf8)<R, T, B1, B2, B3, B4, B5, B6, B7, B8> F;
+        -:  214:    typedef typename _bi::list_av_9<A1, A2, A3, A4, A5, A6, A7, A8, A9>::type list_type;
+        -:  215:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5, a6, a7, a8, a9));
+        -:  216:}
+        -:  217:
+        -:  218:template<class R, class T,
+        -:  219:    class B1, class B2, class B3, class B4, class B5, class B6, class B7, class B8,
+        -:  220:    class A1, class A2, class A3, class A4, class A5, class A6, class A7, class A8, class A9>
+        -:  221:    _bi::bind_t<R, _mfi::BOOST_BIND_MF_NAME(cmf8)<R, T, B1, B2, B3, B4, B5, B6, B7, B8>, typename _bi::list_av_9<A1, A2, A3, A4, A5, A6, A7, A8, A9>::type>
+        -:  222:    BOOST_BIND(R (BOOST_BIND_MF_CC T::*f) (B1, B2, B3, B4, B5, B6, B7, B8) const, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
+        -:  223:{
+        -:  224:    typedef _mfi::BOOST_BIND_MF_NAME(cmf8)<R, T, B1, B2, B3, B4, B5, B6, B7, B8> F;
+        -:  225:    typedef typename _bi::list_av_9<A1, A2, A3, A4, A5, A6, A7, A8, A9>::type list_type;
+        -:  226:    return _bi::bind_t<R, F, list_type>(F(f), list_type(a1, a2, a3, a4, a5, a6, a7, a8, a9));
+        -:  227:}

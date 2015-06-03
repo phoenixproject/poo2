@@ -1,0 +1,122 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/cute/cute_diff_values.h
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*********************************************************************************
+        -:    2: * This file is part of CUTE.
+        -:    3: *
+        -:    4: * CUTE is free software: you can redistribute it and/or modify
+        -:    5: * it under the terms of the GNU Lesser General Public License as published by
+        -:    6: * the Free Software Foundation, either version 3 of the License, or
+        -:    7: * (at your option) any later version.
+        -:    8: *
+        -:    9: * CUTE is distributed in the hope that it will be useful,
+        -:   10: * but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   11: * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   12: * GNU Lesser General Public License for more details.
+        -:   13: *
+        -:   14: * You should have received a copy of the GNU Lesser General Public License
+        -:   15: * along with CUTE.  If not, see <http://www.gnu.org/licenses/>.
+        -:   16: *
+        -:   17: * Copyright 2013 Peter Sommerlad
+        -:   18: *
+        -:   19: *********************************************************************************/
+        -:   20:
+        -:   21:#ifndef CUTE_DIFF_VALUES_H_
+        -:   22:#define CUTE_DIFF_VALUES_H_
+        -:   23:#include "cute_to_string.h"
+        -:   24:namespace cute {
+        -:   25:	// you could provide your own overload for diff_values for your app-specific types
+        -:   26:	// be sure to use tabs as given below, then the CUTE eclipse plug-in will parse correctly
+        -:   27:	template <typename ExpectedValue, typename ActualValue>
+function _ZN4cute11diff_valuesISsSsEESsRKT_RKT0_PKcS8_ called 0 returned 0% blocks executed 0%
+    #####:   28:	std::string diff_values(ExpectedValue const &expected
+        -:   29:						, ActualValue const & actual
+        -:   30:						, char const *left="expected"
+        -:   31:						, char const *right="but was"){
+        -:   32:		// construct a simple message...to be parsed by IDE support
+    #####:   33:		std::string res;
+call    0 never executed
+    #####:   34:		res += ' ';
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   35:		res += left;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   36:		res+=":\t" + cute_to_string::backslashQuoteTabNewline(cute_to_string::to_string(expected))+'\t';
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+call   18 never executed
+branch 19 never executed
+branch 20 never executed
+call   21 never executed
+branch 22 never executed
+branch 23 never executed
+call   24 never executed
+branch 25 never executed
+branch 26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+    #####:   37:		res += right;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   38:		res +=":\t"+cute_to_string::backslashQuoteTabNewline(cute_to_string::to_string(actual))+'\t';
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+call   12 never executed
+branch 13 never executed
+branch 14 never executed
+call   15 never executed
+branch 16 never executed
+branch 17 never executed
+call   18 never executed
+branch 19 never executed
+branch 20 never executed
+call   21 never executed
+branch 22 never executed
+branch 23 never executed
+call   24 never executed
+branch 25 never executed
+branch 26 never executed
+call   27 never executed
+call   28 never executed
+call   29 never executed
+call   30 never executed
+call   31 never executed
+    #####:   39:		return res;
+        -:   40:	}
+        -:   41:}
+        -:   42:
+        -:   43:#endif /* CUTE_DIFF_VALUES_H_ */

@@ -1,0 +1,79 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/cute/cute_base.h
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*********************************************************************************
+        -:    2: * This file is part of CUTE.
+        -:    3: *
+        -:    4: * CUTE is free software: you can redistribute it and/or modify
+        -:    5: * it under the terms of the GNU Lesser General Public License as published by
+        -:    6: * the Free Software Foundation, either version 3 of the License, or
+        -:    7: * (at your option) any later version.
+        -:    8: *
+        -:    9: * CUTE is distributed in the hope that it will be useful,
+        -:   10: * but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   11: * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   12: * GNU Lesser General Public License for more details.
+        -:   13: *
+        -:   14: * You should have received a copy of the GNU Lesser General Public License
+        -:   15: * along with CUTE.  If not, see <http://www.gnu.org/licenses/>.
+        -:   16: *
+        -:   17: * Copyright 2007-2013 Peter Sommerlad
+        -:   18: *
+        -:   19: *********************************************************************************/
+        -:   20:
+        -:   21:#ifndef CUTE_BASE_H_
+        -:   22:#define CUTE_BASE_H_
+        -:   23:#include <string>
+        -:   24:#include "cute_to_string.h"
+        -:   25:#include "cute_determine_version.h"
+        -:   26:namespace cute{
+function _ZN4cute12test_failureD1Ev called 0 returned 0% blocks executed 0%
+    #####:   27:	struct test_failure {
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+call    4 never executed
+        -:   28:		std::string reason;
+        -:   29:		std::string filename;
+        -:   30:		int lineno;
+        -:   31:
+function _ZN4cute12test_failureC1ERKSsPKci called 0 returned 0% blocks executed 0%
+    #####:   32:		test_failure(std::string const &r,char const *f, int line)
+    #####:   33:		:reason(r),filename(f),lineno(line)
+call    0 never executed
+call    1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+call    5 never executed
+call    6 never executed
+call    7 never executed
+    #####:   34:		{ 	}
+        -:   35:		char const * what() const { return reason.c_str(); }
+        -:   36:	};
+        -:   37:}
+        -:   38:#if defined(USE_STD11) && !defined(_MSC_VER)
+        -:   39:#define CUTE_FUNCNAME_PREFIX std::string(__func__)+": "
+        -:   40:#else
+        -:   41:#if defined( _MSC_VER ) || defined(__GNUG__)
+        -:   42://#if defined(USE_STD11)
+        -:   43://#define CUTE_FUNCNAME_PREFIX
+        -:   44:// workaround doesn't work namespace { char const __FUNCTION__ []="lambda";}
+        -:   45:// MSC can not use lambdas outside of function bodies for tests.
+        -:   46://#endif
+        -:   47:// use -D CUTE_FUNCNAME_PREFIX if you want to use non-local lambdas with test macros
+        -:   48:#if !defined(CUTE_FUNCNAME_PREFIX)
+        -:   49:#define CUTE_FUNCNAME_PREFIX std::string(__FUNCTION__)+": "
+        -:   50:#endif
+        -:   51:#else // could provide #defines for other compiler-specific extensions... need to experiment, i.e., MS uses __FUNCTION__
+        -:   52:#define CUTE_FUNCNAME_PREFIX std::string("")
+        -:   53:#endif
+        -:   54:#endif
+        -:   55:#define ASSERTM(msg,cond) do { if (!(cond)) throw cute::test_failure(CUTE_FUNCNAME_PREFIX+cute::cute_to_string::backslashQuoteTabNewline(msg),__FILE__,__LINE__);} while(false)
+        -:   56:#define ASSERT(cond) ASSERTM(#cond,cond)
+        -:   57:#define FAIL() ASSERTM("FAIL()",false)
+        -:   58:#define FAILM(msg) ASSERTM(msg,false)
+        -:   59:#endif /*CUTE_BASE_H_*/

@@ -1,0 +1,367 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/cute/cute_to_string.h
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*********************************************************************************
+        -:    2: * This file is part of CUTE.
+        -:    3: *
+        -:    4: * CUTE is free software: you can redistribute it and/or modify
+        -:    5: * it under the terms of the GNU Lesser General Public License as published by
+        -:    6: * the Free Software Foundation, either version 3 of the License, or
+        -:    7: * (at your option) any later version.
+        -:    8: *
+        -:    9: * CUTE is distributed in the hope that it will be useful,
+        -:   10: * but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   11: * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   12: * GNU Lesser General Public License for more details.
+        -:   13: *
+        -:   14: * You should have received a copy of the GNU Lesser General Public License
+        -:   15: * along with CUTE.  If not, see <http://www.gnu.org/licenses/>.
+        -:   16: *
+        -:   17: * Copyright 2007-2015 Peter Sommerlad
+        -:   18: *
+        -:   19: *********************************************************************************/
+        -:   20:
+        -:   21:#ifndef CUTE_TO_STRING_H_
+        -:   22:#define CUTE_TO_STRING_H_
+        -:   23:#include <string>
+        -:   24:#include <algorithm>
+        -:   25:namespace cute {
+        -:   26:namespace cute_to_string {
+function _ZN4cute14cute_to_stringL24backslashQuoteTabNewlineERKSs called 1 returned 100% blocks executed 61%
+        1:   27:		static inline std::string backslashQuoteTabNewline(std::string const &input){
+        1:   28:			std::string result;
+call    0 returned 100%
+        1:   29:			result.reserve(input.size());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+       33:   30:			for (std::string::size_type i=0; i < input.length() ; ++i){
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+branch  3 taken 97%
+branch  4 taken 3% (fallthrough)
+       32:   31:				switch(input[i]) {
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+branch  3 taken 0%
+branch  4 taken 0%
+branch  5 taken 0%
+branch  6 taken 0%
+branch  7 taken 100%
+    #####:   32:					case '\n': result += "\\n"; break;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   33:					case '\t': result += "\\t"; break;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   34:					case '\\': result += "\\\\"; break;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   35:					case '\r': result += "\\r"; break;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+       32:   36:					default: result += input[i];
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+        -:   37:				}
+        -:   38:			}
+        1:   39:			return result;
+call    0 never executed
+        -:   40:		}
+        -:   41:		// common overloads of interface that work without an ostream
+        -:   42:		static inline std::string to_string(char const *const &s){
+        -:   43:			return s;
+        -:   44:		}
+function _ZN4cute14cute_to_stringL9to_stringERKSs called 0 returned 0% blocks executed 0%
+    #####:   45:		static inline std::string to_string(std::string const &s){
+    #####:   46:			return s;
+call    0 never executed
+        -:   47:		}
+        -:   48:		template <typename T>
+function _ZN4cute14cute_to_string5hexitIcEESsRKT_ called 0 returned 0% blocks executed 0%
+    #####:   49:		std::string hexit(T const &t){ // must be an unsigned type
+    #####:   50:			std::string hexed;
+call    0 never executed
+    #####:   51:			if (t == 0) hexed+='0';
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+    #####:   52:			for (T x=t;x>0;x /= 16){
+branch  0 never executed
+branch  1 never executed
+    #####:   53:				hexed += "0123456789ABCDEF"[x%16];
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   54:			}
+    #####:   55:			reverse(hexed.begin(),hexed.end());
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+branch  7 never executed
+branch  8 never executed
+    #####:   56:			return hexed;
+call    0 never executed
+        -:   57:		}
+        -:   58:	}
+        -:   59:}
+        -:   60:#ifndef DONT_USE_IOSTREAM
+        -:   61:#include <ostream>
+        -:   62:#include <sstream>
+        -:   63:#include <typeinfo>
+        -:   64:#ifdef _MSC_VER
+        -:   65:#include <map>
+        -:   66:#include <set>
+        -:   67:#endif
+        -:   68:#include "cute_demangle.h"
+        -:   69:namespace cute {
+        -:   70:namespace cute_to_string {
+        -:   71:		template <typename T>
+        -:   72:		std::ostream &to_stream(std::ostream &os,T const &t); // recursion needs forward
+        -:   73:
+        -:   74:		// the following code was stolen and adapted from Boost Exception library.
+        -:   75:		// it avoids compile errors, if a type used with ASSERT_EQUALS doesn't provide an output shift operator
+        -:   76:		namespace to_string_detail {
+        -:   77:			template <class T,class CharT,class Traits>
+        -:   78:			char operator<<( std::basic_ostream<CharT,Traits> &, T const & );
+        -:   79:			template <class T,class CharT,class Traits>
+        -:   80:			struct is_output_streamable_impl {
+        -:   81:				static std::basic_ostream<CharT,Traits> & f();
+        -:   82:				static T const & g();
+        -:   83:				enum e { value = (sizeof(char) != sizeof(f()<<g())) }; // assumes sizeof(char)!=sizeof(ostream&)
+        -:   84:			};
+        -:   85:			// specialization for pointer types to map char * to operator<<(std::ostream&,char const *)
+        -:   86:			template <class T,class CharT,class Traits>
+        -:   87:			struct is_output_streamable_impl<T*,CharT,Traits> {
+        -:   88:				static std::basic_ostream<CharT,Traits> & f();
+        -:   89:				static T const * g();
+        -:   90:				enum e { value = (sizeof(char) != sizeof(f()<<g())) }; // assumes sizeof(char)!=sizeof(ostream&)
+        -:   91:			};
+        -:   92:			template <class CONT>
+        -:   93:			struct has_begin_end_const_member {
+        -:   94:				template <typename T, T, T> struct type_check;
+        -:   95:				template <typename C> static typename C::const_iterator test(
+        -:   96:						type_check<typename C::const_iterator (C::*)()const,&C::begin, &C::end>*);
+        -:   97:				template <typename C> static char test(...);
+        -:   98:				enum e { value = (sizeof(char) != sizeof(test<CONT>(0)))
+        -:   99:				};
+        -:  100:			}; // this doesn't work with VS library for set/map due to implementation in parent
+        -:  101:			   // no useful workaround possible
+        -:  102:			   //-> internal compiler errors for VS2010/12/12CTP Nov 12
+        -:  103:		}
+        -:  104:		template <class T, class CharT=char, class Traits=std::char_traits<CharT> >
+        -:  105:		struct is_output_streamable {
+        -:  106:			enum e { value=to_string_detail::is_output_streamable_impl<T,CharT,Traits>::value };
+        -:  107:		};
+        -:  108:		// detect standard container conforming begin() end() iterator accessors.
+        -:  109:		// might employ begin/end traits from c++0x for loop in the future. --> select_container
+        -:  110:		template <typename T>
+        -:  111:		struct printItWithDelimiter
+        -:  112:		{
+        -:  113:			std::ostream &os;
+        -:  114:			bool first; // allow use of for_each algorithm
+        -:  115:			printItWithDelimiter(std::ostream &os):os(os),first(true){}
+        -:  116:			void operator()(T const &t){
+        -:  117:				if (!first) os<<',';
+        -:  118:				else first=false;
+        -:  119:				os << '\n'; // use newlines so that CUTE's plug-in result viewer gives nice diffs
+        -:  120:				cute_to_string::to_stream<T>(os,t);
+        -:  121:			}
+        -:  122:		};
+        -:  123:		//try print_pair with specialization of template function instead:
+        -:  124:		// the generic version prints about missing operator<< that is the last resort
+        -:  125:		template <typename T>
+        -:  126:		std::ostream &print_pair(std::ostream &os,T const &t){
+        -:  127:			return os << "no operator<<(ostream&, " <<cute::demangle(typeid(T).name())<<')';
+        -:  128:		}
+        -:  129:		//the std::pair overload is useful for std::map etc. however,
+        -:  130:		template <typename K, typename V>
+        -:  131:		std::ostream &print_pair(std::ostream &os,std::pair<K,V> const &p){
+        -:  132:			os << '[' ;
+        -:  133:			cute_to_string::to_stream(os,p.first);
+        -:  134:			os << " -> ";
+        -:  135:			cute_to_string::to_stream(os,p.second);
+        -:  136:			os << ']';
+        -:  137:			return os;
+        -:  138:		}
+        -:  139:		// overload for Arrays
+        -:  140:		template <typename T, size_t N>
+        -:  141:		std::ostream &print_pair(std::ostream &os,T const (&t)[N]){
+        -:  142:			printItWithDelimiter<T> printer(os);
+        -:  143:			os << cute::demangle(typeid(T).name()) <<'['<<N<<']'<< '{';
+        -:  144:			std::for_each(t,t+N,printer);
+        -:  145:			return os << '}';
+        -:  146:		}
+        -:  147:
+        -:  148:		template <typename T, bool select>
+        -:  149:		struct select_container {
+        -:  150:			std::ostream &os;
+        -:  151:			select_container(std::ostream &os):os(os){}
+        -:  152:			std::ostream& operator()(T const &t){
+        -:  153:				printItWithDelimiter<typename T::value_type> printer(os);
+        -:  154:				os << cute::demangle(typeid(T).name()) << '{';
+        -:  155:				std::for_each(t.begin(),t.end(),printer);
+        -:  156:				return os << '}';
+        -:  157:			}
+        -:  158:		};
+        -:  159:
+        -:  160:		template <typename T>
+        -:  161:		struct select_container<T,false> {
+        -:  162:			std::ostream &os;
+        -:  163:			select_container(std::ostream &os):os(os){}
+        -:  164:			std::ostream & operator()(T const &t){
+        -:  165:				//  look for std::pair. a future with tuple might be useful as well, but not now.
+        -:  166:				return print_pair(os,t); // here a simple template function overload works.
+        -:  167:			}
+        -:  168:		};
+        -:  169:
+        -:  170:		template <typename T, bool select>
+        -:  171:		struct select_built_in_shift_if {
+        -:  172:			std::ostream &os;
+        -:  173:			select_built_in_shift_if(std::ostream &ros):os(ros){}
+        -:  174:			std::ostream& operator()(T const &t){
+        -:  175:				return os << t ; // default uses operator<<(std::ostream&,T const&) if available
+        -:  176:			}
+        -:  177:		};
+        -:  178:
+        -:  179:		template <typename T>
+        -:  180:		struct select_built_in_shift_if<T,false> {
+        -:  181:			std::ostream &os;
+        -:  182:			select_built_in_shift_if(std::ostream &ros):os(ros){}
+        -:  183:			std::ostream & operator()(T const &t){
+        -:  184:				// if no operator<< is found, try if it is a container or std::pair
+        -:  185:				return select_container<T,bool(to_string_detail::has_begin_end_const_member<T>::value) >(os)(t);
+        -:  186:			}
+        -:  187:		};
+        -:  188:		template <typename T>
+        -:  189:		std::ostream &to_stream(std::ostream &os,T const &t){
+        -:  190:			select_built_in_shift_if<T,cute_to_string::is_output_streamable<T>::value > out(os);
+        -:  191:			return out(t);
+        -:  192:		}
+        -:  193:#ifdef _MSC_VER
+        -:  194:		// special overloads because VC can not detect begin/end
+        -:  195:		inline std::ostream& to_stream(std::ostream &os,std::string const &s){
+        -:  196:			return os<<s;
+        -:  197:		} // needed to compensate for following overload, hope nothing else matches
+        -:  198:		template <template<typename,typename,typename> class S,
+        -:  199:		          typename K, typename CMP, typename ALLOC>
+        -:  200:		std::ostream &to_stream(std::ostream &os,S<K,CMP,ALLOC> const &t){
+        -:  201:			printItWithDelimiter<typename S<K,CMP,ALLOC>::value_type> printer(os);
+        -:  202:			os << cute::demangle(typeid(S<K,CMP,ALLOC>).name()) << '{';
+        -:  203:			std::for_each(t.begin(),t.end(),printer);
+        -:  204:			return os << '}';
+        -:  205:		}
+        -:  206:		template <template<typename,typename,typename,typename> class M,typename K, typename V, typename CMP, typename ALLOC>
+        -:  207:		std::ostream &to_stream(std::ostream &os,M<K,V,CMP,ALLOC> const &t){
+        -:  208:			printItWithDelimiter<typename M<K,V,CMP,ALLOC>::value_type> printer(os);
+        -:  209:			os << cute::demangle(typeid(M<K,V,CMP,ALLOC>).name()) << '{';
+        -:  210:			std::for_each(t.begin(),t.end(),printer);
+        -:  211:			return os << '}';
+        -:  212:		}
+        -:  213:#endif
+        -:  214:
+        -:  215:		// this is the interface:
+        -:  216:		template <typename T>
+        -:  217:		std::string to_string(T const &t) {
+        -:  218:			std::ostringstream os;
+        -:  219:			to_stream(os,t);
+        -:  220:			return os.str();
+        -:  221:		}
+        -:  222:	}
+        -:  223:}
+        -:  224:#else
+        -:  225:#include "cute_determine_traits.h"
+        -:  226:#include <limits>
+        -:  227:// traits
+        -:  228:namespace cute{
+        -:  229:namespace cute_to_string {
+        -:  230:		template <typename T>
+        -:  231:		void adjust_long(T const &,std::string &to_adjust){ // assumes T is an integral type
+        -:  232:			if (sizeof(T) <= sizeof(int)) return; // don't mark int sized integrals with L
+        -:  233:			if (sizeof(T)>=sizeof(long)) to_adjust+='L';
+        -:  234:			if (sizeof(T)> sizeof(long)) to_adjust+='L'; // if there is support for (unsigned) long long
+        -:  235:		}
+        -:  236:		template <typename T>
+        -:  237:		std::string to_string_embedded_int_signed(T const &t, impl_place_for_traits::true_type ){
+        -:  238:			std::string convert; // t is an integral value
+        -:  239:			T x=t;
+        -:  240:			bool negative=t<0;
+        -:  241:			bool minint=false;
+        -:  242:			if (x == std::numeric_limits<T>::min()){ // can not easily convert it, assuming 2s complement
+        -:  243:				minint=true;
+        -:  244:				x +=1;
+        -:  245:			}
+        -:  246:			if (x < 0) x = -x;
+        -:  247:			if (x == 0) convert += '0';
+        -:  248:			while (x > 0) {
+        -:  249:				convert += "0123456789"[x%10];
+        -:  250:				x /= 10;
+        -:  251:			}
+        -:  252:			if (minint) ++ convert[0]; // adjust last digit
+        -:  253:			if (negative) convert += '-';
+        -:  254:			reverse(convert.begin(),convert.end());
+        -:  255:			cute::cute_to_string::adjust_long(t,convert);
+        -:  256:			return convert;
+        -:  257:		}
+        -:  258:		template <typename T>
+        -:  259:		std::string to_string_embedded_int_signed(T const &t, impl_place_for_traits::false_type ){
+        -:  260:			// manual hex conversion to avoid ostream dependency for unsigned values
+        -:  261:			std::string hexed="0x"+cute::cute_to_string::hexit(t);
+        -:  262:			cute::cute_to_string::adjust_long(t,hexed);
+        -:  263:			return hexed;
+        -:  264:		}
+        -:  265:		template <typename T>
+        -:  266:		std::string to_string_embedded_int(T const &t, impl_place_for_traits::true_type ){
+        -:  267:			return to_string_embedded_int_signed(t,impl_place_for_traits::is_signed<T>());
+        -:  268:		}
+        -:  269:		template <typename T>
+        -:  270:		std::string to_string_embedded_int(T const &t, impl_place_for_traits::false_type ){
+        -:  271:			return "no to_string";
+        -:  272:		}
+        -:  273:		// convenience for pointers.... useful?
+        -:  274:		template <typename T>
+        -:  275:		std::string to_string(T * const&t) {
+        -:  276:			std::string result;
+        -:  277:			if (sizeof(T *) <= sizeof(unsigned long))
+        -:  278:				result = cute::cute_to_string::hexit(reinterpret_cast<unsigned long>(t));
+        -:  279:			else
+        -:  280:#if defined(USE_STD11) /* should allow for all compilers supporting ULL*/
+        -:  281:			result = cute::cute_to_string::hexit(reinterpret_cast<unsigned long long>(t));
+        -:  282:#else
+        -:  283:			return "no to_string";
+        -:  284:#endif
+        -:  285:			result.insert(0u,sizeof(T*)*2-result.size(),'0');
+        -:  286:			result.insert(0,1,'p');
+        -:  287:			return result;
+        -:  288:		}
+        -:  289:
+        -:  290:		// this is the interface:
+        -:  291:		template <typename T>
+        -:  292:		std::string to_string(T const &t) {
+        -:  293:			return to_string_embedded_int(t, impl_place_for_traits::is_integral<T>());
+        -:  294:		}
+        -:  295:	}
+        -:  296:}
+        -:  297:#endif
+        -:  298:#endif /* CUTE_TO_STRING_H_ */

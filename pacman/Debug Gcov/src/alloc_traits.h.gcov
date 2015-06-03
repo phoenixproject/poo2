@@ -1,0 +1,259 @@
+        -:    0:Source:c:/mingw/lib/gcc/mingw32/4.8.1/include/c++/ext/alloc_traits.h
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Allocator traits -*- C++ -*-
+        -:    2:
+        -:    3:// Copyright (C) 2011-2013 Free Software Foundation, Inc.
+        -:    4://
+        -:    5:// This file is part of the GNU ISO C++ Library.  This library is free
+        -:    6:// software; you can redistribute it and/or modify it under the
+        -:    7:// terms of the GNU General Public License as published by the
+        -:    8:// Free Software Foundation; either version 3, or (at your option)
+        -:    9:// any later version.
+        -:   10:
+        -:   11:// This library is distributed in the hope that it will be useful,
+        -:   12:// but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   13:// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   14:// GNU General Public License for more details.
+        -:   15:
+        -:   16:// Under Section 7 of GPL version 3, you are granted additional
+        -:   17:// permissions described in the GCC Runtime Library Exception, version
+        -:   18:// 3.1, as published by the Free Software Foundation.
+        -:   19:
+        -:   20:// You should have received a copy of the GNU General Public License and
+        -:   21:// a copy of the GCC Runtime Library Exception along with this program;
+        -:   22:// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+        -:   23:// <http://www.gnu.org/licenses/>.
+        -:   24:
+        -:   25:/** @file ext/alloc_traits.h
+        -:   26: *  This file is a GNU extension to the Standard C++ Library.
+        -:   27: */
+        -:   28:
+        -:   29:#ifndef _EXT_ALLOC_TRAITS_H
+        -:   30:#define _EXT_ALLOC_TRAITS_H 1
+        -:   31:
+        -:   32:#pragma GCC system_header
+        -:   33:
+        -:   34:#if __cplusplus >= 201103L
+        -:   35:# include <bits/move.h>
+        -:   36:# include <bits/alloc_traits.h>
+        -:   37:#else
+        -:   38:# include <bits/allocator.h>  // for __alloc_swap
+        -:   39:#endif
+        -:   40:
+        -:   41:namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+        -:   42:{
+        -:   43:_GLIBCXX_BEGIN_NAMESPACE_VERSION
+        -:   44:
+        -:   45:#if __cplusplus >= 201103L
+        -:   46:  template<typename _Alloc>
+        -:   47:    struct __allocator_always_compares_equal
+        -:   48:    { static const bool value = false; };
+        -:   49:
+        -:   50:  template<typename _Alloc>
+        -:   51:    const bool __allocator_always_compares_equal<_Alloc>::value;
+        -:   52:
+        -:   53:  template<typename _Tp>
+        -:   54:    struct __allocator_always_compares_equal<std::allocator<_Tp>>
+        -:   55:    { static const bool value = true; };
+        -:   56:
+        -:   57:  template<typename _Tp>
+        -:   58:    const bool __allocator_always_compares_equal<std::allocator<_Tp>>::value;
+        -:   59:
+        -:   60:  template<typename, typename> struct array_allocator;
+        -:   61:
+        -:   62:  template<typename _Tp, typename _Array>
+        -:   63:    struct __allocator_always_compares_equal<array_allocator<_Tp, _Array>>
+        -:   64:    { static const bool value = true; };
+        -:   65:
+        -:   66:  template<typename _Tp, typename _Array>
+        -:   67:    const bool
+        -:   68:    __allocator_always_compares_equal<array_allocator<_Tp, _Array>>::value;
+        -:   69:
+        -:   70:  template<typename> struct bitmap_allocator;
+        -:   71:
+        -:   72:  template<typename _Tp>
+        -:   73:    struct __allocator_always_compares_equal<bitmap_allocator<_Tp>>
+        -:   74:    { static const bool value = true; };
+        -:   75:
+        -:   76:  template<typename _Tp>
+        -:   77:    const bool __allocator_always_compares_equal<bitmap_allocator<_Tp>>::value;
+        -:   78:
+        -:   79:  template<typename> struct malloc_allocator;
+        -:   80:
+        -:   81:  template<typename _Tp>
+        -:   82:    struct __allocator_always_compares_equal<malloc_allocator<_Tp>>
+        -:   83:    { static const bool value = true; };
+        -:   84:
+        -:   85:  template<typename _Tp>
+        -:   86:    const bool __allocator_always_compares_equal<malloc_allocator<_Tp>>::value;
+        -:   87:
+        -:   88:  template<typename> struct mt_allocator;
+        -:   89:
+        -:   90:  template<typename _Tp>
+        -:   91:    struct __allocator_always_compares_equal<mt_allocator<_Tp>>
+        -:   92:    { static const bool value = true; };
+        -:   93:
+        -:   94:  template<typename _Tp>
+        -:   95:    const bool __allocator_always_compares_equal<mt_allocator<_Tp>>::value;
+        -:   96:
+        -:   97:  template<typename> struct new_allocator;
+        -:   98:
+        -:   99:  template<typename _Tp>
+        -:  100:    struct __allocator_always_compares_equal<new_allocator<_Tp>>
+        -:  101:    { static const bool value = true; };
+        -:  102:
+        -:  103:  template<typename _Tp>
+        -:  104:    const bool __allocator_always_compares_equal<new_allocator<_Tp>>::value;
+        -:  105:
+        -:  106:  template<typename> struct pool_allocator;
+        -:  107:
+        -:  108:  template<typename _Tp>
+        -:  109:    struct __allocator_always_compares_equal<pool_allocator<_Tp>>
+        -:  110:    { static const bool value = true; };
+        -:  111:
+        -:  112:  template<typename _Tp>
+        -:  113:    const bool __allocator_always_compares_equal<pool_allocator<_Tp>>::value;
+        -:  114:#endif
+        -:  115:
+        -:  116:/**
+        -:  117: * @brief  Uniform interface to C++98 and C++0x allocators.
+        -:  118: * @ingroup allocators
+        -:  119:*/
+        -:  120:template<typename _Alloc>
+        -:  121:  struct __alloc_traits
+        -:  122:#if __cplusplus >= 201103L
+        -:  123:  : std::allocator_traits<_Alloc>
+        -:  124:#endif
+        -:  125:  {
+        -:  126:    typedef _Alloc allocator_type;
+        -:  127:#if __cplusplus >= 201103L
+        -:  128:    typedef std::allocator_traits<_Alloc>           _Base_type;
+        -:  129:    typedef typename _Base_type::value_type         value_type;
+        -:  130:    typedef typename _Base_type::pointer            pointer;
+        -:  131:    typedef typename _Base_type::const_pointer      const_pointer;
+        -:  132:    typedef typename _Base_type::size_type          size_type;
+        -:  133:    typedef typename _Base_type::difference_type    difference_type;
+        -:  134:    // C++0x allocators do not define reference or const_reference
+        -:  135:    typedef value_type&                             reference;
+        -:  136:    typedef const value_type&                       const_reference;
+        -:  137:    using _Base_type::allocate;
+        -:  138:    using _Base_type::deallocate;
+        -:  139:    using _Base_type::construct;
+        -:  140:    using _Base_type::destroy;
+        -:  141:    using _Base_type::max_size;
+        -:  142:
+        -:  143:  private:
+        -:  144:    template<typename _Ptr>
+        -:  145:      struct __is_custom_pointer
+        -:  146:      : std::integral_constant<bool, std::is_same<pointer, _Ptr>::value
+        -:  147:                                     && !std::is_pointer<_Ptr>::value>
+        -:  148:      { };
+        -:  149:
+        -:  150:  public:
+        -:  151:    // overload construct for non-standard pointer types
+        -:  152:    template<typename _Ptr, typename... _Args>
+        -:  153:      static typename std::enable_if<__is_custom_pointer<_Ptr>::value>::type
+        -:  154:      construct(_Alloc& __a, _Ptr __p, _Args&&... __args)
+        -:  155:      {
+        -:  156:	_Base_type::construct(__a, std::addressof(*__p),
+        -:  157:			      std::forward<_Args>(__args)...);
+        -:  158:      }
+        -:  159:
+        -:  160:    // overload destroy for non-standard pointer types
+        -:  161:    template<typename _Ptr>
+        -:  162:      static typename std::enable_if<__is_custom_pointer<_Ptr>::value>::type
+        -:  163:      destroy(_Alloc& __a, _Ptr __p)
+        -:  164:      { _Base_type::destroy(__a, std::addressof(*__p)); }
+        -:  165:
+        -:  166:    static _Alloc _S_select_on_copy(const _Alloc& __a)
+        -:  167:    { return _Base_type::select_on_container_copy_construction(__a); }
+        -:  168:
+        -:  169:    static void _S_on_swap(_Alloc& __a, _Alloc& __b)
+        -:  170:    { std::__alloc_on_swap(__a, __b); }
+        -:  171:
+        -:  172:    static constexpr bool _S_propagate_on_copy_assign()
+        -:  173:    { return _Base_type::propagate_on_container_copy_assignment::value; }
+        -:  174:
+        -:  175:    static constexpr bool _S_propagate_on_move_assign()
+        -:  176:    { return _Base_type::propagate_on_container_move_assignment::value; }
+        -:  177:
+        -:  178:    static constexpr bool _S_propagate_on_swap()
+        -:  179:    { return _Base_type::propagate_on_container_swap::value; }
+        -:  180:
+        -:  181:    static constexpr bool _S_always_equal()
+        -:  182:    { return __allocator_always_compares_equal<_Alloc>::value; }
+        -:  183:
+        -:  184:    static constexpr bool _S_nothrow_move()
+        -:  185:    { return _S_propagate_on_move_assign() || _S_always_equal(); }
+        -:  186:
+        -:  187:    static constexpr bool _S_nothrow_swap()
+        -:  188:    {
+        -:  189:      using std::swap;
+        -:  190:      return !_S_propagate_on_swap()
+        -:  191:       	|| noexcept(swap(std::declval<_Alloc&>(), std::declval<_Alloc&>()));
+        -:  192:    }
+        -:  193:
+        -:  194:    template<typename _Tp>
+        -:  195:      struct rebind
+        -:  196:      { typedef typename _Base_type::template rebind_alloc<_Tp> other; };
+        -:  197:#else
+        -:  198:
+        -:  199:    typedef typename _Alloc::pointer                pointer;
+        -:  200:    typedef typename _Alloc::const_pointer          const_pointer;
+        -:  201:    typedef typename _Alloc::value_type             value_type;
+        -:  202:    typedef typename _Alloc::reference              reference;
+        -:  203:    typedef typename _Alloc::const_reference        const_reference;
+        -:  204:    typedef typename _Alloc::size_type              size_type;
+        -:  205:    typedef typename _Alloc::difference_type        difference_type;
+        -:  206:
+        -:  207:    static pointer
+        -:  208:    allocate(_Alloc& __a, size_type __n)
+        -:  209:    { return __a.allocate(__n); }
+        -:  210:
+        -:  211:    static void deallocate(_Alloc& __a, pointer __p, size_type __n)
+        -:  212:    { __a.deallocate(__p, __n); }
+        -:  213:
+        -:  214:    template<typename _Tp>
+function _ZN9__gnu_cxx14__alloc_traitsISaISsEE9constructISsEEvRS1_PSsRKT_ called 0 returned 0% blocks executed 0%
+function _ZN9__gnu_cxx14__alloc_traitsISaIN4cute4testEEE9constructIS2_EEvRS3_PS2_RKT_ called 1 returned 100% blocks executed 100%
+        1:  215:      static void construct(_Alloc& __a, pointer __p, const _Tp& __arg)
+        1:  216:      { __a.construct(__p, __arg); }
+call    0 never executed
+call    1 returned 100%
+        -:  217:
+function _ZN9__gnu_cxx14__alloc_traitsISaISsEE7destroyERS1_PSs called 0 returned 0% blocks executed 0%
+function _ZN9__gnu_cxx14__alloc_traitsISaIN4cute4testEEE7destroyERS3_PS2_ called 0 returned 0% blocks executed 0%
+    #####:  218:    static void destroy(_Alloc& __a, pointer __p)
+    #####:  219:    { __a.destroy(__p); }
+call    0 never executed
+call    1 never executed
+        -:  220:
+function _ZN9__gnu_cxx14__alloc_traitsISaISsEE8max_sizeERKS1_ called 0 returned 0% blocks executed 0%
+function _ZN9__gnu_cxx14__alloc_traitsISaIN4cute4testEEE8max_sizeERKS3_ called 2 returned 100% blocks executed 100%
+        2:  221:    static size_type max_size(const _Alloc& __a)
+        2:  222:    { return __a.max_size(); }
+call    0 never executed
+call    1 returned 100%
+        -:  223:
+        -:  224:    static const _Alloc& _S_select_on_copy(const _Alloc& __a) { return __a; }
+        -:  225:
+        -:  226:    static void _S_on_swap(_Alloc& __a, _Alloc& __b)
+        -:  227:    {
+        -:  228:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+        -:  229:      // 431. Swapping containers with unequal allocators.
+        -:  230:      std::__alloc_swap<_Alloc>::_S_do_it(__a, __b);
+        -:  231:    }
+        -:  232:
+        -:  233:    template<typename _Tp>
+        -:  234:      struct rebind
+        -:  235:      { typedef typename _Alloc::template rebind<_Tp>::other other; };
+        -:  236:#endif
+        -:  237:  };
+        -:  238:
+        -:  239:_GLIBCXX_END_NAMESPACE_VERSION
+        -:  240:} // namespace std
+        -:  241:
+        -:  242:#endif

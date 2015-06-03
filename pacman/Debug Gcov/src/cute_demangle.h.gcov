@@ -1,0 +1,176 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/cute/cute_demangle.h
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*********************************************************************************
+        -:    2: * This file is part of CUTE.
+        -:    3: *
+        -:    4: * CUTE is free software: you can redistribute it and/or modify
+        -:    5: * it under the terms of the GNU Lesser General Public License as published by
+        -:    6: * the Free Software Foundation, either version 3 of the License, or
+        -:    7: * (at your option) any later version.
+        -:    8: *
+        -:    9: * CUTE is distributed in the hope that it will be useful,
+        -:   10: * but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   11: * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   12: * GNU Lesser General Public License for more details.
+        -:   13: *
+        -:   14: * You should have received a copy of the GNU Lesser General Public License
+        -:   15: * along with CUTE.  If not, see <http://www.gnu.org/licenses/>.
+        -:   16: *
+        -:   17: * Copyright 2009 Peter Sommerlad
+        -:   18: *
+        -:   19: *********************************************************************************/
+        -:   20:
+        -:   21:#ifndef CUTE_DEMANGLE_H_
+        -:   22:#define CUTE_DEMANGLE_H_
+        -:   23:#include <string>
+        -:   24:// needs adaptation for different compilers
+        -:   25:// dependency to demangle is a given,
+        -:   26:// otherwise we have to use macros everywhere
+        -:   27:#ifdef __GNUG__ // also for clang...
+        -:   28:#include <cxxabi.h> // __cxa_demangle
+        -:   29:#include <cstdlib> // ::free() 
+        -:   30:namespace cute {
+        -:   31:	extern inline std::string demangle(char const *name);
+        -:   32:
+        -:   33:namespace cute_impl_demangle {
+function _ZN4cute18cute_impl_demangle14plain_demangleEPKc called 0 returned 0% blocks executed 0%
+    #####:   34:inline std::string plain_demangle(char const *name){
+    #####:   35:	if (!name) return "unknown";
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+    #####:   36:	char const *toBeFreed = abi::__cxa_demangle(name,0,0,0);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   37:	std::string result(toBeFreed?toBeFreed:name);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+    #####:   38:	::free(const_cast<char*>(toBeFreed));
+    #####:   39:	return result;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+        -:   40:}
+        -:   41:#ifdef _LIBCPP_NAMESPACE
+        -:   42:inline void patch_library_namespace(std::string &mightcontaininlinenamespace) {
+        -:   43:// libc++ uses inline namespace std::_LIBCPP_NAMESPACE:: for its classes. This breaks the tests relying on meta information. re-normalize the names back to std::
+        -:   44:	std::string::size_type pos=std::string::npos;
+        -:   45:#define XNS(X) #X
+        -:   46:#define NS(X) XNS(X)
+        -:   47:#define TOREPLACE "::" NS(_LIBCPP_NAMESPACE)
+        -:   48:	std::string const nothing;
+        -:   49:	while (std::string::npos != (pos= mightcontaininlinenamespace.find(TOREPLACE)))
+        -:   50:			mightcontaininlinenamespace.erase(pos,sizeof(TOREPLACE)-1);
+        -:   51:#undef NS
+        -:   52:#undef XNS
+        -:   53:#undef TOREPLACE
+        -:   54:}
+        -:   55:inline void patchresultforstring(std::string& result) {
+        -:   56:	static const std::string stringid=plain_demangle(typeid(std::string).name());
+        -:   57:	std::string::size_type pos=std::string::npos;
+        -:   58:	while(std::string::npos != (pos=result.find(stringid))){
+        -:   59:		if (!result.compare(pos+stringid.size(),2," >",2)) result.erase(pos+stringid.size(),1); // makes templates look nice
+        -:   60:		result.replace(pos,stringid.size(),"std::string");
+        -:   61:	}
+        -:   62:	patch_library_namespace(result);
+        -:   63:}
+        -:   64:#endif
+        -:   65:
+        -:   66:}
+function _ZN4cute8demangleEPKc called 0 returned 0% blocks executed 0%
+    #####:   67:inline std::string demangle(char const *name){
+    #####:   68:	if (!name) return "unknown";
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+    #####:   69:	std::string result(cute_impl_demangle::plain_demangle(name));
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:   70:#ifdef _LIBCPP_NAMESPACE
+        -:   71:	cute_impl_demangle::patchresultforstring(result);
+        -:   72:#endif
+    #####:   73:	return result;
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+        -:   74:}
+        -:   75:}
+        -:   76:#else
+        -:   77:namespace cute {
+        -:   78:#ifdef _MSC_VER
+        -:   79:namespace cute_demangle_impl {
+        -:   80:
+        -:   81:inline void removeMSKeyword(std::string &name,std::string const &kw){
+        -:   82:	std::string::size_type pos=std::string::npos;
+        -:   83:	while (std::string::npos != (pos= name.find(kw)))
+        -:   84:			name.erase(pos,kw.size());
+        -:   85:
+        -:   86:}
+        -:   87:inline void patchresultforstring(std::string& result) {
+        -:   88:	static const std::string stringid=(typeid(std::string).name());
+        -:   89:	std::string::size_type pos=std::string::npos;
+        -:   90:	while(std::string::npos != (pos=result.find(stringid))){
+        -:   91:		if (!result.compare(pos+stringid.size(),2," >",2)) result.erase(pos+stringid.size(),1); // makes templates look nice
+        -:   92:		result.replace(pos,stringid.size(),"std::string");
+        -:   93:	}
+        -:   94:}
+        -:   95:
+        -:   96:inline void patchMSMangling(std::string &name){
+        -:   97:	patchresultforstring(name);
+        -:   98:	removeMSKeyword(name,"class ");
+        -:   99:	removeMSKeyword(name,"struct ");
+        -:  100:	for (std::string::iterator i=name.begin(); i != name.end(); ++i){
+        -:  101:		if (*i==','){  i = name.insert(i+1,' ');}
+        -:  102:	}
+        -:  103:	std::string::size_type pos=0;
+        -:  104:	while(std::string::npos !=(pos=name.find(" ,",pos))){
+        -:  105:		name.erase(pos,1);
+        -:  106:		++pos;
+        -:  107:	}
+        -:  108:}
+        -:  109:}
+        -:  110:inline std::string demangle(char const *name){
+        -:  111:	std::string result(name?name:"unknown");
+        -:  112:	cute_demangle_impl::patchMSMangling(result);
+        -:  113:	return result;
+        -:  114:}
+        -:  115:
+        -:  116:#else
+        -:  117:// this default works reasonably with MSVC71 and 8, hopefully for others as well
+        -:  118:inline std::string demangle(char const *name){
+        -:  119:	return std::string(name?name:"unknown");
+        -:  120:}
+        -:  121:#endif
+        -:  122:}
+        -:  123:#endif
+        -:  124:
+        -:  125:#endif /* CUTE_DEMANGLE_H_ */

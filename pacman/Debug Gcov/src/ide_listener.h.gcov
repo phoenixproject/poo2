@@ -1,0 +1,232 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/cute/ide_listener.h
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*********************************************************************************
+        -:    2: * This file is part of CUTE.
+        -:    3: *
+        -:    4: * CUTE is free software: you can redistribute it and/or modify
+        -:    5: * it under the terms of the GNU Lesser General Public License as published by
+        -:    6: * the Free Software Foundation, either version 3 of the License, or
+        -:    7: * (at your option) any later version.
+        -:    8: *
+        -:    9: * CUTE is distributed in the hope that it will be useful,
+        -:   10: * but WITHOUT ANY WARRANTY; without even the implied warranty of
+        -:   11: * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        -:   12: * GNU Lesser General Public License for more details.
+        -:   13: *
+        -:   14: * You should have received a copy of the GNU Lesser General Public License
+        -:   15: * along with CUTE.  If not, see <http://www.gnu.org/licenses/>.
+        -:   16: *
+        -:   17: * Copyright 2007-2013 Peter Sommerlad
+        -:   18: *
+        -:   19: *********************************************************************************/
+        -:   20:
+        -:   21:#ifndef IDE_LISTENER_H_
+        -:   22:#define IDE_LISTENER_H_
+        -:   23:#include "cute_listener.h"
+        -:   24:#include <iostream>
+        -:   25:#include <algorithm>
+        -:   26:#ifdef _MSC_VER
+        -:   27:#define WIN32_LEAN_AND_MEAN
+        -:   28:#include <windows.h>
+        -:   29:#include <sstream>
+        -:   30:#endif
+        -:   31:namespace cute {
+        -:   32:	template <typename Listener=null_listener>
+        -:   33:	struct ide_listener: public Listener
+        -:   34:	{
+function _ZN4cute12ide_listenerINS_13null_listenerEEC2ERSo called 1 returned 100% blocks executed 100%
+        1:   35:		ide_listener(std::ostream &os=std::cout):out(os) {}
+call    0 returned 100%
+function _ZN4cute12ide_listenerINS_13null_listenerEE5beginERKSt6vectorINS_4testESaIS4_EEPKcj called 1 returned 100% blocks executed 100%
+        1:   36:		void begin(suite const &t,char const *info, size_t n_of_tests){
+        1:   37:			out << std::dec << "\n#beginning " << info << " " << n_of_tests << '\n';
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+call    3 returned 100%
+call    4 returned 100%
+call    5 returned 100%
+        1:   38:			Listener::begin(t,info,n_of_tests);
+call    0 returned 100%
+        1:   39:		}
+function _ZN4cute12ide_listenerINS_13null_listenerEE3endERKSt6vectorINS_4testESaIS4_EEPKc called 1 returned 100% blocks executed 100%
+        1:   40:		void end(suite const &t, char const *info){
+        1:   41:			out << "\n#ending " << info << std::endl;
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+        1:   42:			Listener::end(t,info);
+call    0 returned 100%
+        1:   43:		}
+function _ZN4cute12ide_listenerINS_13null_listenerEE5startERKNS_4testE called 1 returned 100% blocks executed 89%
+        1:   44:		void start(test const &t){
+        1:   45:			out << "\n#starting " << t.name()<<'\n';
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+branch  5 taken 100% (fallthrough)
+branch  6 taken 0% (throw)
+call    7 returned 100%
+branch  8 taken 100% (fallthrough)
+branch  9 taken 0% (throw)
+call   10 returned 100%
+call   11 never executed
+        1:   46:			Listener::start(t);
+call    0 returned 100%
+        1:   47:		}
+function _ZN4cute12ide_listenerINS_13null_listenerEE7successERKNS_4testEPKc called 1 returned 100% blocks executed 80%
+        1:   48:		void success(test const &t, char const *msg){
+        1:   49:			out << "\n#success " <<  maskBlanks(t.name()) <<" " << msg<< '\n';
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+branch  5 taken 100% (fallthrough)
+branch  6 taken 0% (throw)
+call    7 returned 100%
+branch  8 taken 100% (fallthrough)
+branch  9 taken 0% (throw)
+call   10 returned 100%
+branch 11 taken 100% (fallthrough)
+branch 12 taken 0% (throw)
+call   13 returned 100%
+branch 14 taken 100% (fallthrough)
+branch 15 taken 0% (throw)
+call   16 returned 100%
+branch 17 taken 100% (fallthrough)
+branch 18 taken 0% (throw)
+call   19 returned 100%
+branch 20 taken 100% (fallthrough)
+branch 21 taken 0% (throw)
+call   22 returned 100%
+call   23 never executed
+call   24 never executed
+        1:   50:			Listener::success(t,msg);
+call    0 returned 100%
+        1:   51:		}
+function _ZN4cute12ide_listenerINS_13null_listenerEE7failureERKNS_4testERKNS_12test_failureE called 0 returned 0% blocks executed 0%
+    #####:   52:		void failure(test const &t,test_failure const &e){
+    #####:   53:			out << std::dec <<  "\n#failure " << maskBlanks(t.name()) << " " << e.filename << ":" << e.lineno << " " << (e.reason) << '\n';
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+call   19 never executed
+branch 20 never executed
+branch 21 never executed
+call   22 never executed
+branch 23 never executed
+branch 24 never executed
+call   25 never executed
+branch 26 never executed
+branch 27 never executed
+call   28 never executed
+branch 29 never executed
+branch 30 never executed
+call   31 never executed
+branch 32 never executed
+branch 33 never executed
+call   34 never executed
+branch 35 never executed
+branch 36 never executed
+call   37 never executed
+call   38 never executed
+call   39 never executed
+    #####:   54:			Listener::failure(t,e);
+call    0 never executed
+        -:   55:#ifdef _MSV_VER
+        -:   56:			std::ostringstream os;
+        -:   57:			os << std::dec << e.filename << "(" << e.lineno << ") : failure: " <<e.reason << " in " << t.name()<< std::endl;
+        -:   58:			OutputDebugString(os.str().c_str());
+        -:   59:#endif
+    #####:   60:		}
+function _ZN4cute12ide_listenerINS_13null_listenerEE5errorERKNS_4testEPKc called 0 returned 0% blocks executed 0%
+    #####:   61:		void error(test const &t, char const *what){
+    #####:   62:			out << "\n#error " << maskBlanks(t.name()) << " " << what <<'\n';
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+call   10 never executed
+branch 11 never executed
+branch 12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+call   19 never executed
+branch 20 never executed
+branch 21 never executed
+call   22 never executed
+call   23 never executed
+call   24 never executed
+    #####:   63:			Listener::error(t,what);
+call    0 never executed
+        -:   64:#ifdef _MSV_VER
+        -:   65:			std::ostringstream os;
+        -:   66:			os << what << " error in " << t.name() << std::endl;
+        -:   67:			OutputDebugString(os.str().c_str());
+        -:   68:#endif
+    #####:   69:		}
+function _ZN4cute12ide_listenerINS_13null_listenerEE10maskBlanksESs called 1 returned 100% blocks executed 100%
+        1:   70:		static std::string maskBlanks(std::string in) {
+        1:   71:			std::transform(in.begin(),in.end(),in.begin(),blankToUnderscore());
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
+call    9 returned 100%
+branch 10 taken 100% (fallthrough)
+branch 11 taken 0% (throw)
+        1:   72:			return in;
+call    0 returned 100%
+        -:   73:		}
+        -:   74:	protected:
+        -:   75:		struct blankToUnderscore{
+function _ZNK4cute12ide_listenerINS_13null_listenerEE17blankToUnderscoreclEc called 11 returned 100% blocks executed 75%
+       11:   76:            char operator()(char in) const {
+       11:   77:			if (in == ' ') return '_';
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+       11:   78:			return in;
+        -:   79:		}
+        -:   80:        };
+        -:   81:		std::ostream &out;
+        -:   82:	};
+        -:   83:}
+        -:   84:
+        -:   85:#endif /*IDE_LISTENER_H_*/

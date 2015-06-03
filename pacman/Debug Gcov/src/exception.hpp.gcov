@@ -1,0 +1,542 @@
+        -:    0:Source:D:/_BASE/_SISTEMAS/poo2/pacman/boost/boost/exception/exception.hpp
+        -:    0:Graph:Test.gcno
+        -:    0:Data:Test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://Copyright (c) 2006-2009 Emil Dotchevski and Reverge Studios, Inc.
+        -:    2:
+        -:    3://Distributed under the Boost Software License, Version 1.0. (See accompanying
+        -:    4://file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+        -:    5:
+        -:    6:#ifndef UUID_274DA366004E11DCB1DDFE2E56D89593
+        -:    7:#define UUID_274DA366004E11DCB1DDFE2E56D89593
+        -:    8:#if defined(__GNUC__) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+        -:    9:#pragma GCC system_header
+        -:   10:#endif
+        -:   11:#if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+        -:   12:#pragma warning(push,1)
+        -:   13:#endif
+        -:   14:
+        -:   15:namespace
+        -:   16:boost
+        -:   17:    {
+        -:   18:    namespace
+        -:   19:    exception_detail
+        -:   20:        {
+        -:   21:        template <class T>
+        -:   22:        class
+        -:   23:        refcount_ptr
+        -:   24:            {
+        -:   25:            public:
+        -:   26:
+function _ZN5boost16exception_detail12refcount_ptrINS0_20error_info_containerEEC1Ev called 0 returned 0% blocks executed 0%
+    #####:   27:            refcount_ptr():
+    #####:   28:                px_(0)
+        -:   29:                {
+    #####:   30:                }
+        -:   31:
+function _ZN5boost16exception_detail12refcount_ptrINS0_20error_info_containerEED1Ev called 0 returned 0% blocks executed 0%
+    #####:   32:            ~refcount_ptr()
+        -:   33:                {
+    #####:   34:                release();
+call    0 never executed
+    #####:   35:                }
+        -:   36:
+function _ZN5boost16exception_detail12refcount_ptrINS0_20error_info_containerEEC1ERKS3_ called 0 returned 0% blocks executed 0%
+    #####:   37:            refcount_ptr( refcount_ptr const & x ):
+    #####:   38:                px_(x.px_)
+        -:   39:                {
+    #####:   40:                add_ref();
+call    0 never executed
+    #####:   41:                }
+        -:   42:
+        -:   43:            refcount_ptr &
+function _ZN5boost16exception_detail12refcount_ptrINS0_20error_info_containerEEaSERKS3_ called 0 returned 0% blocks executed 0%
+    #####:   44:            operator=( refcount_ptr const & x )
+        -:   45:                {
+    #####:   46:                adopt(x.px_);
+call    0 never executed
+    #####:   47:                return *this;
+        -:   48:                }
+        -:   49:
+        -:   50:            void
+function _ZN5boost16exception_detail12refcount_ptrINS0_20error_info_containerEE5adoptEPS2_ called 0 returned 0% blocks executed 0%
+    #####:   51:            adopt( T * px )
+        -:   52:                {
+    #####:   53:                release();
+call    0 never executed
+    #####:   54:                px_=px;
+    #####:   55:                add_ref();
+call    0 never executed
+    #####:   56:                }
+        -:   57:
+        -:   58:            T *
+        -:   59:            get() const
+        -:   60:                {
+        -:   61:                return px_;
+        -:   62:                }
+        -:   63:
+        -:   64:            private:
+        -:   65:
+        -:   66:            T * px_;
+        -:   67:
+        -:   68:            void
+function _ZN5boost16exception_detail12refcount_ptrINS0_20error_info_containerEE7add_refEv called 0 returned 0% blocks executed 0%
+    #####:   69:            add_ref()
+        -:   70:                {
+    #####:   71:                if( px_ )
+branch  0 never executed
+branch  1 never executed
+    #####:   72:                    px_->add_ref();
+call    0 never executed
+    #####:   73:                }
+        -:   74:
+        -:   75:            void
+function _ZN5boost16exception_detail12refcount_ptrINS0_20error_info_containerEE7releaseEv called 0 returned 0% blocks executed 0%
+    #####:   76:            release()
+        -:   77:                {
+    #####:   78:                if( px_ )
+branch  0 never executed
+branch  1 never executed
+    #####:   79:                    px_->release();
+call    0 never executed
+    #####:   80:                }
+        -:   81:            };
+        -:   82:        }
+        -:   83:
+        -:   84:    ////////////////////////////////////////////////////////////////////////
+        -:   85:
+        -:   86:    template <class Tag,class T>
+        -:   87:    class error_info;
+        -:   88:
+        -:   89:    typedef error_info<struct throw_function_,char const *> throw_function;
+        -:   90:    typedef error_info<struct throw_file_,char const *> throw_file;
+        -:   91:    typedef error_info<struct throw_line_,int> throw_line;
+        -:   92:
+        -:   93:    template <>
+        -:   94:    class
+        -:   95:    error_info<throw_function_,char const *>
+        -:   96:        {
+        -:   97:        public:
+        -:   98:        typedef char const * value_type;
+        -:   99:        value_type v_;
+        -:  100:        explicit
+        -:  101:        error_info( value_type v ):
+        -:  102:            v_(v)
+        -:  103:            {
+        -:  104:            }
+        -:  105:        };
+        -:  106:
+        -:  107:    template <>
+        -:  108:    class
+        -:  109:    error_info<throw_file_,char const *>
+        -:  110:        {
+        -:  111:        public:
+        -:  112:        typedef char const * value_type;
+        -:  113:        value_type v_;
+        -:  114:        explicit
+        -:  115:        error_info( value_type v ):
+        -:  116:            v_(v)
+        -:  117:            {
+        -:  118:            }
+        -:  119:        };
+        -:  120:
+        -:  121:    template <>
+        -:  122:    class
+        -:  123:    error_info<throw_line_,int>
+        -:  124:        {
+        -:  125:        public:
+        -:  126:        typedef int value_type;
+        -:  127:        value_type v_;
+        -:  128:        explicit
+        -:  129:        error_info( value_type v ):
+        -:  130:            v_(v)
+        -:  131:            {
+        -:  132:            }
+        -:  133:        };
+        -:  134:
+        -:  135:    template <class E,class Tag,class T>
+        -:  136:    E const & operator<<( E const &, error_info<Tag,T> const & );
+        -:  137:
+        -:  138:    template <class E>
+        -:  139:    E const & operator<<( E const &, throw_function const & );
+        -:  140:
+        -:  141:    template <class E>
+        -:  142:    E const & operator<<( E const &, throw_file const & );
+        -:  143:
+        -:  144:    template <class E>
+        -:  145:    E const & operator<<( E const &, throw_line const & );
+        -:  146:
+        -:  147:    class exception;
+        -:  148:
+        -:  149:    template <class>
+        -:  150:    class shared_ptr;
+        -:  151:
+        -:  152:    namespace
+        -:  153:    exception_detail
+        -:  154:        {
+        -:  155:        class error_info_base;
+        -:  156:        struct type_info_;
+        -:  157:
+        -:  158:        struct
+        -:  159:        error_info_container
+        -:  160:            {
+        -:  161:            virtual char const * diagnostic_information( char const * ) const = 0;
+        -:  162:            virtual shared_ptr<error_info_base> get( type_info_ const & ) const = 0;
+        -:  163:            virtual void set( shared_ptr<error_info_base> const &, type_info_ const & ) = 0;
+        -:  164:            virtual void add_ref() const = 0;
+        -:  165:            virtual void release() const = 0;
+        -:  166:
+        -:  167:            protected:
+        -:  168:
+        -:  169:            ~error_info_container() throw()
+        -:  170:                {
+        -:  171:                }
+        -:  172:            };
+        -:  173:
+        -:  174:        template <class>
+        -:  175:        struct get_info;
+        -:  176:
+        -:  177:        template <>
+        -:  178:        struct get_info<throw_function>;
+        -:  179:
+        -:  180:        template <>
+        -:  181:        struct get_info<throw_file>;
+        -:  182:
+        -:  183:        template <>
+        -:  184:        struct get_info<throw_line>;
+        -:  185:
+        -:  186:        char const * get_diagnostic_information( exception const &, char const * );
+        -:  187:        }
+        -:  188:
+        -:  189:    class
+function _ZN5boost9exceptionC2ERKS0_ called 0 returned 0% blocks executed 0%
+function _ZN5boost9exceptionaSERKS0_ called 0 returned 0% blocks executed 0%
+    #####:  190:    exception
+call    0 never executed
+call    1 never executed
+        -:  191:        {
+        -:  192:        protected:
+        -:  193:
+function _ZN5boost9exceptionC2Ev called 0 returned 0% blocks executed 0%
+    #####:  194:        exception():
+        -:  195:            throw_function_(0),
+        -:  196:            throw_file_(0),
+    #####:  197:            throw_line_(-1)
+call    0 never executed
+        -:  198:            {
+    #####:  199:            }
+        -:  200:
+        -:  201:#ifdef __HP_aCC
+        -:  202:        //On HP aCC, this protected copy constructor prevents throwing boost::exception.
+        -:  203:        //On all other platforms, the same effect is achieved by the pure virtual destructor.
+        -:  204:        exception( exception const & x ) throw():
+        -:  205:            data_(x.data_),
+        -:  206:            throw_function_(x.throw_function_),
+        -:  207:            throw_file_(x.throw_file_),
+        -:  208:            throw_line_(x.throw_line_)
+        -:  209:            {
+        -:  210:            }
+        -:  211:#endif
+        -:  212:
+        -:  213:        virtual ~exception() throw()
+        -:  214:#ifndef __HP_aCC
+        -:  215:            = 0 //Workaround for HP aCC, =0 incorrectly leads to link errors.
+        -:  216:#endif
+        -:  217:            ;
+        -:  218:
+        -:  219:#if defined(__MWERKS__) && __MWERKS__<=0x3207
+        -:  220:        public:
+        -:  221:#else
+        -:  222:        private:
+        -:  223:
+        -:  224:        template <class E>
+        -:  225:        friend E const & operator<<( E const &, throw_function const & );
+        -:  226:
+        -:  227:        template <class E>
+        -:  228:        friend E const & operator<<( E const &, throw_file const & );
+        -:  229:
+        -:  230:        template <class E>
+        -:  231:        friend E const & operator<<( E const &, throw_line const & );
+        -:  232:
+        -:  233:        friend char const * exception_detail::get_diagnostic_information( exception const &, char const * );
+        -:  234:
+        -:  235:        template <class E,class Tag,class T>
+        -:  236:        friend E const & operator<<( E const &, error_info<Tag,T> const & );
+        -:  237:
+        -:  238:        template <class>
+        -:  239:        friend struct exception_detail::get_info;
+        -:  240:        friend struct exception_detail::get_info<throw_function>;
+        -:  241:        friend struct exception_detail::get_info<throw_file>;
+        -:  242:        friend struct exception_detail::get_info<throw_line>;
+        -:  243:#endif
+        -:  244:        mutable exception_detail::refcount_ptr<exception_detail::error_info_container> data_;
+        -:  245:        mutable char const * throw_function_;
+        -:  246:        mutable char const * throw_file_;
+        -:  247:        mutable int throw_line_;
+        -:  248:        };
+        -:  249:
+        -:  250:    inline
+function _ZN5boost9exceptionD2Ev called 0 returned 0% blocks executed 0%
+    #####:  251:    exception::
+    #####:  252:    ~exception() throw()
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  253:        {
+    #####:  254:        }
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+branch  3 never executed
+branch  4 never executed
+call    5 never executed
+        -:  255:
+        -:  256:    template <class E>
+        -:  257:    E const &
+        -:  258:    operator<<( E const & x, throw_function const & y )
+        -:  259:        {
+        -:  260:        x.throw_function_=y.v_;
+        -:  261:        return x;
+        -:  262:        }
+        -:  263:
+        -:  264:    template <class E>
+        -:  265:    E const &
+        -:  266:    operator<<( E const & x, throw_file const & y )
+        -:  267:        {
+        -:  268:        x.throw_file_=y.v_;
+        -:  269:        return x;
+        -:  270:        }
+        -:  271:
+        -:  272:    template <class E>
+        -:  273:    E const &
+        -:  274:    operator<<( E const & x, throw_line const & y )
+        -:  275:        {
+        -:  276:        x.throw_line_=y.v_;
+        -:  277:        return x;
+        -:  278:        }
+        -:  279:
+        -:  280:    ////////////////////////////////////////////////////////////////////////
+        -:  281:
+        -:  282:    namespace
+        -:  283:    exception_detail
+        -:  284:        {
+        -:  285:        template <class T>
+        -:  286:        struct
+function _ZN5boost16exception_detail19error_info_injectorINS_17bad_function_callEEC2ERKS3_ called 0 returned 0% blocks executed 0%
+    #####:  287:        error_info_injector:
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:  288:            public T,
+        -:  289:            public exception
+        -:  290:            {
+        -:  291:            explicit
+function _ZN5boost16exception_detail19error_info_injectorINS_17bad_function_callEEC1ERKS2_ called 0 returned 0% blocks executed 0%
+    #####:  292:            error_info_injector( T const & x ):
+    #####:  293:                T(x)
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+        -:  294:                {
+    #####:  295:                }
+        -:  296:
+function _ZN5boost16exception_detail19error_info_injectorINS_17bad_function_callEED0Ev called 0 returned 0% blocks executed 0%
+function _ZN5boost16exception_detail19error_info_injectorINS_17bad_function_callEED1Ev called 0 returned 0% blocks executed 0%
+function _ZN5boost16exception_detail19error_info_injectorINS_17bad_function_callEED2Ev called 0 returned 0% blocks executed 0%
+    #####:  297:            ~error_info_injector() throw()
+        -:  298:                {
+    #####:  299:                }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+call    7 never executed
+call    8 never executed
+branch  9 never executed
+branch 10 never executed
+call   11 never executed
+        -:  300:            };
+        -:  301:
+        -:  302:        struct large_size { char c[256]; };
+        -:  303:        large_size dispatch( exception * );
+        -:  304:
+        -:  305:        struct small_size { };
+        -:  306:        small_size dispatch( void * );
+        -:  307:
+        -:  308:        template <class,int>
+        -:  309:        struct enable_error_info_helper;
+        -:  310:
+        -:  311:        template <class T>
+        -:  312:        struct
+        -:  313:        enable_error_info_helper<T,sizeof(large_size)>
+        -:  314:            {
+        -:  315:            typedef T type;
+        -:  316:            };
+        -:  317:
+        -:  318:        template <class T>
+        -:  319:        struct
+        -:  320:        enable_error_info_helper<T,sizeof(small_size)>
+        -:  321:            {
+        -:  322:            typedef error_info_injector<T> type;
+        -:  323:            };
+        -:  324:
+        -:  325:        template <class T>
+        -:  326:        struct
+        -:  327:        enable_error_info_return_type
+        -:  328:            {
+        -:  329:            typedef typename enable_error_info_helper<T,sizeof(exception_detail::dispatch((T*)0))>::type type;
+        -:  330:            };
+        -:  331:        }
+        -:  332:
+        -:  333:    template <class T>
+        -:  334:    inline
+        -:  335:    typename
+        -:  336:    exception_detail::enable_error_info_return_type<T>::type
+function _ZN5boost17enable_error_infoINS_17bad_function_callEEENS_16exception_detail29enable_error_info_return_typeIT_E4typeERKS4_ called 0 returned 0% blocks executed 0%
+    #####:  337:    enable_error_info( T const & x )
+        -:  338:        {
+        -:  339:        typedef typename exception_detail::enable_error_info_return_type<T>::type rt;
+    #####:  340:        return rt(x);
+call    0 never executed
+        -:  341:        }
+        -:  342:
+        -:  343:    ////////////////////////////////////////////////////////////////////////
+        -:  344:
+        -:  345:    namespace
+        -:  346:    exception_detail
+        -:  347:        {
+        -:  348:        class
+function _ZN5boost16exception_detail10clone_baseC2Ev called 0 returned 0% blocks executed 0%
+function _ZN5boost16exception_detail10clone_baseC2ERKS1_ called 0 returned 0% blocks executed 0%
+    #####:  349:        clone_base
+        -:  350:            {
+        -:  351:            public:
+        -:  352:
+        -:  353:            virtual clone_base const * clone() const = 0;
+        -:  354:            virtual void rethrow() const = 0;
+        -:  355:
+        -:  356:            virtual
+function _ZN5boost16exception_detail10clone_baseD0Ev called 0 returned 0% blocks executed 0%
+function _ZN5boost16exception_detail10clone_baseD1Ev called 0 returned 0% blocks executed 0%
+function _ZN5boost16exception_detail10clone_baseD2Ev called 0 returned 0% blocks executed 0%
+    #####:  357:            ~clone_base() throw()
+    #####:  358:                {
+    #####:  359:                }
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+call    7 never executed
+        -:  360:            };
+        -:  361:
+        -:  362:        inline
+        -:  363:        void
+function _ZN5boost16exception_detail20copy_boost_exceptionEPNS_9exceptionEPKS1_ called 0 returned 0% blocks executed 0%
+    #####:  364:        copy_boost_exception( exception * a, exception const * b )
+        -:  365:            {
+    #####:  366:            *a = *b;
+call    0 never executed
+    #####:  367:            }
+        -:  368:
+        -:  369:        inline
+        -:  370:        void
+        -:  371:        copy_boost_exception( void *, void const * )
+        -:  372:            {
+        -:  373:            }
+        -:  374:
+        -:  375:        template <class T>
+        -:  376:        class
+function _ZN5boost16exception_detail10clone_implINS0_19error_info_injectorINS_17bad_function_callEEEEC1ERKS5_ called 0 returned 0% blocks executed 0%
+    #####:  377:        clone_impl:
+call    0 never executed
+call    1 never executed
+        -:  378:            public T,
+        -:  379:            public clone_base
+        -:  380:            {
+        -:  381:            public:
+        -:  382:
+        -:  383:            explicit
+function _ZN5boost16exception_detail10clone_implINS0_19error_info_injectorINS_17bad_function_callEEEEC1ERKS4_ called 0 returned 0% blocks executed 0%
+    #####:  384:            clone_impl( T const & x ):
+    #####:  385:                T(x)
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+        -:  386:                {
+    #####:  387:                copy_boost_exception(this,&x);
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  388:                }
+        -:  389:
+function _ZN5boost16exception_detail10clone_implINS0_19error_info_injectorINS_17bad_function_callEEEED0Ev called 0 returned 0% blocks executed 0%
+function _ZN5boost16exception_detail10clone_implINS0_19error_info_injectorINS_17bad_function_callEEEED1Ev called 0 returned 0% blocks executed 0%
+    #####:  390:            ~clone_impl() throw()
+        -:  391:                {
+    #####:  392:                }
+call    0 never executed
+call    1 never executed
+call    2 never executed
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+        -:  393:
+        -:  394:            private:
+        -:  395:
+        -:  396:            clone_base const *
+function _ZNK5boost16exception_detail10clone_implINS0_19error_info_injectorINS_17bad_function_callEEEE5cloneEv called 0 returned 0% blocks executed 0%
+    #####:  397:            clone() const
+        -:  398:                {
+    #####:  399:                return new clone_impl(*this);
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+call    6 never executed
+        -:  400:                }
+        -:  401:
+        -:  402:            void
+function _ZNK5boost16exception_detail10clone_implINS0_19error_info_injectorINS_17bad_function_callEEEE7rethrowEv called 0 returned 0% blocks executed 0%
+    #####:  403:            rethrow() const
+        -:  404:                {
+    #####:  405:                throw*this;
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+call    4 never executed
+call    5 never executed
+        -:  406:                }
+        -:  407:            };
+        -:  408:        }
+        -:  409:
+        -:  410:    template <class T>
+        -:  411:    inline
+        -:  412:    exception_detail::clone_impl<T>
+function _ZN5boost24enable_current_exceptionINS_16exception_detail19error_info_injectorINS_17bad_function_callEEEEENS1_10clone_implIT_EERKS6_ called 0 returned 0% blocks executed 0%
+    #####:  413:    enable_current_exception( T const & x )
+        -:  414:        {
+    #####:  415:        return exception_detail::clone_impl<T>(x);
+call    0 never executed
+        -:  416:        }
+        -:  417:    }
+        -:  418:
+        -:  419:#if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+        -:  420:#pragma warning(pop)
+        -:  421:#endif
+        -:  422:#endif
