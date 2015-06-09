@@ -3,5 +3,14 @@
   <groupId>br.edu.ifes.poo2</groupId>
   <artifactId>rsdao</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Simulador de Rotas com DAO</name>
+  <name>Route Simulator DAO</name>
 </project>
+
+<dependencies>
+       <dependency>
+            <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>4.8.2</version>
+            <scope>test</scope>
+      </dependency>
+ </dependencies>
